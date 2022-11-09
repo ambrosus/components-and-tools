@@ -1,0 +1,5 @@
+/node_modules
+/build
+*.scss
+*.css
+*.md
