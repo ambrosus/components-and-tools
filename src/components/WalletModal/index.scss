@@ -1,0 +1,102 @@
+.modal {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.modal__overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+  z-index: 1000;
+  background: linear-gradient(135deg, rgba(225, 235, 255, 0.67) 0%, rgba(203, 213, 233, 0.27) 100%);
+  backdrop-filter: blur(7px);
+}
+
+.modal__container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 24px;
+  width: 412px;
+  height: auto;
+  background: #FFFFFF;
+  box-shadow: 0 8px 49px rgba(162, 178, 216, 0.65);
+  border-radius: 16px;
+
+  z-index: 1001;
+}
+
+.modal__text {
+  font-family: 'Inter', sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  text-align: center;
+  color: #1D1D1D;
+  padding: 0;
+  margin: 0 0 24px;
+}
+
+.modal-button {
+  width: 100%;
+  height: 5rem;
+  margin-bottom: 8px;
+  padding: 16px;
+  background: #ffffff;
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  grid-column-gap: 12px;
+  border-radius: 16px;
+  border-color: transparent;
+  box-shadow: 0 16px 32px rgba(105, 142, 226, 0.2);
+  cursor: pointer;
+
+  @media screen and (max-width: 450px) {
+    width: 100%;
+  }
+}
+
+.modal-button__logo {
+  height: 48px;
+  width: 48px;
+  background: white;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.modal-button__text-container {
+  text-align: left;
+}
+
+.modal-button__heading {
+  font-family: 'Proxima Nova', sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 100%;
+  color: #212121;
+  margin-bottom: 14px;
+}
+
+.modal-button__text {
+  font-family: 'Proxima Nova', sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  color: #a2b2d8;
+}
+
+.modal-button__chevron {
+  width: 1rem;
+  height: 1rem;
+  transform: rotate(-90deg);
+  margin-left: auto;
+}
