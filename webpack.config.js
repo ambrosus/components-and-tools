@@ -1,5 +1,4 @@
 const path = require("path");
-const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const TerserPlugin = require('terser-webpack-plugin');
 
 module.exports = {
@@ -13,15 +12,15 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, "./dist"),
     filename: '[name].js',
-    libraryTarget: "commonjs2"
+    libraryTarget: "commonjs2",
+    clean: true,
   },
   module: {
     rules: [
       { test: /\.js$/, exclude: /node_modules/, loader: "babel-loader" },
       {
-        test: /\.svg$/,
-        loader: "file-loader",
-        exclude: /node_modules/
+        test: /\.svg$/i,
+        use: ['@svgr/webpack'],
       },
       {
         test: /\.(css|scss)$/,
@@ -43,9 +42,13 @@ module.exports = {
   },
   externals: {
     react: "react",
+    React: "react",
     process: "process",
+    '@web3-react/injected-connector': "@web3-react/injected-connector",
+    "@web3-react/walletconnect-connector": "@web3-react/walletconnect-connector",
+    buffer: "buffer",
+    Buffer: "buffer",
   },
-  plugins: [
-    new CleanWebpackPlugin()
-  ]
+  target: "web",
+  plugins: [],
 };

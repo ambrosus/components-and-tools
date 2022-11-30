@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import { Metamask } from './assets/Metamask';
-import { Logout } from './assets/Logout';
-import { Check } from './assets/Check';
-import { Copy } from './assets/Copy';
+import { Metamask } from '../assets/Metamask';
+import { Logout } from '../assets/Logout';
+import { Check } from '../assets/Check';
+import { Copy } from '../assets/Copy';
 
 const AddressBlock = ({ address = '', logout }) => {
   const [isCopied, setIsCopied] = useState(false);

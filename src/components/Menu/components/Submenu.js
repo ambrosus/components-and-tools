@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import { ArrowUp } from './assets/ArrowUp';
-import { ArrowDown } from './assets/ArrowDown';
+import { ArrowUp } from '../assets/ArrowUp';
+import { ArrowDown } from '../assets/ArrowDown';
+import { PrismicText } from '@prismicio/react';
 
 const Submenu = ({ submenu }) => {
   const [isOpen, setIsOpen] = useState(true);
@@ -36,4 +37,4 @@ const Submenu = ({ submenu }) => {
   );
 };
 
-export default Submenu
+export default Submenu;

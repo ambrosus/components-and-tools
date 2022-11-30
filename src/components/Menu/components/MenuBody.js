@@ -1,11 +1,11 @@
 import { useEffect, useState } from 'react';
-import { usePrismicPageData } from './usePrismicPageData';
-import { Logo } from './assets/Logo';
-import { Close } from './assets/Close';
-import { Menu } from './assets/Menu';
+import { usePrismicPageData } from '../usePrismicPageData';
+import { Logo } from '../assets/Logo';
+import { Close } from '../assets/Close';
+import { Menu } from '../assets/Menu';
 import AddressBlock from './AddressBlock';
-import { Wallet } from './assets/Wallet';
-import { LearnMoreBtn } from './assets/LearnMoreBtn';
+import { Wallet } from '../assets/Wallet';
+import { LearnMoreBtn } from '../assets/LearnMoreBtn';
 import Submenu from './Submenu';
 
 const MenuBody = ({ address, login, logout, initHidden, customLogo }) => {
