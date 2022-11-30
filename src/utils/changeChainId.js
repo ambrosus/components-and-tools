@@ -1,7 +1,7 @@
 import { utils } from 'ethers';
 
 const changeChainId = async (provider, selectedNetwork) => {
-  const hexChainId = utils.hexValue(+chainId);
+  const hexChainId = utils.hexValue(+selectedNetwork);
 
   try {
     await provider.request({
