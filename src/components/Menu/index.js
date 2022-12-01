@@ -5,13 +5,26 @@ import { client } from './prismic';
 import MenuBody from './components/MenuBody';
 import WalletModal from '../WalletModal';
 import { useAuthorization } from '../../hooks';
+import {
+  defaultInjectedConnector,
+  defaultWalletConnectConnector,
+} from '../../utils';
 
-const Menu = ({ web3ReactInstance, initHidden, customLogo }) => {
+const Menu = ({
+  web3ReactInstance,
+  initHidden,
+  customLogo,
+  configuredInjectedConnector = defaultInjectedConnector,
+  configuredWalletConnectConnector = defaultWalletConnectConnector,
+}) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const toggleModal = () => setIsModalOpen((prev) => !prev);
   const { account } = web3ReactInstance;
-  const { loginMetamask, loginWalletConnect, logout } =
-    useAuthorization(web3ReactInstance);
+  const { loginMetamask, loginWalletConnect, logout } = useAuthorization(
+    web3ReactInstance,
+    configuredInjectedConnector,
+    configuredWalletConnectConnector
+  );
 
   return (
     <PrismicProvider client={client}>
