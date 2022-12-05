@@ -27,10 +27,12 @@ const WalletModal = ({
   return (
     isOpen &&
     createPortal(
-      <div className='modal'>
-        <div className='modal__overlay' onClick={toggleModal} />
-        <div className='modal__container'>
-          <p className='modal__text'>Please connect a wallet to use AirDAO</p>
+      <div className='wallet-modal'>
+        <div className='wallet-modal__overlay' onClick={toggleModal} />
+        <div className='wallet-modal__container'>
+          <p className='wallet-modal__text'>
+            Please connect a wallet to use AirDAO
+          </p>
           <MetamaskConnectButton onClick={initMetamask} />
           <WalletConnectButton onClick={initWalletConnect} />
         </div>

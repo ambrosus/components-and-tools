@@ -1,4 +1,4 @@
-.modal {
+.wallet-modal {
   display: flex;
   flex-flow: row nowrap;
   justify-content: center;
@@ -10,7 +10,7 @@
   width: 100vw;
 }
 
-.modal__overlay {
+.wallet-modal__overlay {
   position: absolute;
   top: 0;
   left: 0;
@@ -21,7 +21,7 @@
   backdrop-filter: blur(7px);
 }
 
-.modal__container {
+.wallet-modal__container {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -42,7 +42,7 @@
   }
 }
 
-.modal__text {
+.wallet-modal__text {
   font-family: 'Inter', sans-serif;
   font-style: normal;
   font-weight: 400;
