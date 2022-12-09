@@ -500,7 +500,7 @@
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
-              hexChainId = ethers.utils.hexValue(+selectedNetwork);
+              hexChainId = ethers.utils.hexValue(+selectedNetwork.chainId);
               _context.prev = 1;
               _context.next = 4;
               return provider.request({
@@ -510,12 +510,13 @@
                 }]
               });
             case 4:
-              _context.next = 10;
+              _context.next = 11;
               break;
             case 6:
               _context.prev = 6;
               _context.t0 = _context["catch"](1);
-              _context.next = 10;
+              console.log(_context.t0);
+              _context.next = 11;
               return provider.request({
                 method: 'wallet_addEthereumChain',
                 params: [{
@@ -530,7 +531,7 @@
                   blockExplorerUrls: [selectedNetwork.explorerUrl]
                 }]
               });
-            case 10:
+            case 11:
             case "end":
               return _context.stop();
           }
@@ -671,12 +672,33 @@
       }))();
     }, []);
     React.useEffect(function () {
-      if (error instanceof core.UnsupportedChainIdError) {
-        if (connector instanceof injectedConnector.InjectedConnector && !document.hidden) {
-          var ambNetwork = getCurrentAmbNetwork();
-          changeChainId(window.ethereum, ambNetwork);
-        }
-      }
+      _asyncToGenerator( /*#__PURE__*/regenerator.mark(function _callee2() {
+        var provider, ambNetwork;
+        return regenerator.wrap(function _callee2$(_context2) {
+          while (1) {
+            switch (_context2.prev = _context2.next) {
+              case 0:
+                if (!(error instanceof core.UnsupportedChainIdError)) {
+                  _context2.next = 7;
+                  break;
+                }
+                if (document.hidden) {
+                  _context2.next = 7;
+                  break;
+                }
+                _context2.next = 4;
+                return connector.getProvider();
+              case 4:
+                provider = _context2.sent;
+                ambNetwork = getCurrentAmbNetwork();
+                changeChainId(provider, ambNetwork);
+              case 7:
+              case "end":
+                return _context2.stop();
+            }
+          }
+        }, _callee2);
+      }))();
     }, [error]);
     return isLoaded;
   };
@@ -2306,7 +2328,7 @@
     }), document.querySelector('body'));
   };
 
-  var css_248z = "/* width */\n::-webkit-scrollbar {\n  width: 8px;\n  height: 8px;\n}\n\n/* Track */\n::-webkit-scrollbar-track {\n  background: transparent;\n}\n\n/* Handle */\n::-webkit-scrollbar-thumb {\n  background: rgba(168, 183, 218, 0.5098039216);\n  border-radius: 5px;\n}\n\n/* Handle on hover */\n::-webkit-scrollbar-thumb:hover {\n  background: rgba(168, 183, 218, 0.5098039216);\n}\n\n.body {\n  margin: 0;\n  padding: 0;\n  box-sizing: border-box;\n}\n\n.side-menu-container {\n  position: fixed;\n  padding: 16px 0;\n  height: fit-content;\n  margin-left: 16px;\n  width: 320px;\n  z-index: 1000;\n  max-height: -webkit-fill-available;\n}\n@media only screen and (max-width: 428px) {\n  .side-menu-container {\n    width: 100%;\n    padding: 0;\n    margin-left: 0;\n  }\n}\n\n.side-menu {\n  position: relative;\n  display: flex;\n  flex-direction: column;\n  padding: 16px 24px;\n  width: 100%;\n  z-index: 999999;\n  background: #ffffff;\n  box-shadow: 0 8px 32px rgba(105, 142, 226, 0.24);\n  border-radius: 0 0 16px 0;\n  font-family: Inter, sans-serif;\n  box-sizing: border-box;\n  height: 64px;\n  overflow: hidden;\n}\n@media only screen and (max-width: 428px) {\n  .side-menu {\n    border-radius: 0;\n  }\n}\n.side-menu_expanded {\n  max-height: calc(100vh - 32px);\n  height: fit-content !important;\n  width: 100%;\n  border-radius: 8px;\n}\n@media only screen and (max-width: 720px) {\n  .side-menu_expanded {\n    max-height: 100vh;\n  }\n}\n@media only screen and (max-width: 428px) {\n  .side-menu_expanded {\n    padding-bottom: 100px !important;\n    border-radius: 0;\n  }\n}\n.side-menu p,\n.side-menu span,\n.side-menu button,\n.side-menu a {\n  font-family: Inter, sans-serif;\n  font-weight: 300;\n  line-height: 140%;\n  color: #1d1d1d;\n}\n\n.side-menu__mobile-wrapper {\n  display: flex;\n  align-items: center;\n  justify-content: space-between;\n  width: 272px;\n  height: 32px;\n}\n@media only screen and (max-width: 428px) {\n  .side-menu__mobile-wrapper {\n    width: 100%;\n  }\n}\n\n.side-menu__logo {\n  height: 32px;\n  width: auto;\n}\n.side-menu__connect-wallet {\n  display: flex;\n  margin-top: 40px;\n  column-gap: 8px;\n  align-items: center;\n  justify-content: center;\n  background: rgba(69, 126, 255, 0.07);\n  /* BRAND BLUE */\n  border: 1.5px solid #457eff;\n  border-radius: 16px;\n  color: #3568dd !important;\n  padding: 0 18px;\n  height: 58px;\n  font-size: 16px;\n  font-weight: 500;\n}\n.side-menu__connect-text {\n  display: flex;\n  align-items: center;\n  text-align: center;\n  color: #a2b2d8;\n  font-size: 12px;\n  margin-top: 8px;\n  font-weight: 400;\n  line-height: 15px;\n  padding: 0 24px;\n}\n\n.side-menu__content {\n  display: flex;\n  flex-direction: column;\n  padding: 0 !important;\n}\n\n.side-menu__title {\n  color: rgba(69, 126, 255, 0.45);\n  font-size: 14px;\n  padding-left: 11px;\n  border-bottom: 1px solid rgba(69, 126, 255, 0.45);\n  margin-top: 27px;\n  display: block;\n}\n\n.side-menu__content-list {\n  margin-bottom: 28px;\n  margin-top: 4px;\n}\n\n.side-menu__list {\n  display: flex;\n  flex-direction: column;\n  row-gap: 16px;\n  padding-left: 0;\n  list-style: none;\n  margin: 0;\n}\n.side-menu__list a {\n  color: #0e0e0e;\n  text-decoration: none;\n  font-family: Inter, sans-serif;\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n}\n.side-menu__list li {\n  height: 24px;\n  font-family: Inter, sans-serif;\n  font-style: normal;\n  font-weight: 400;\n  font-size: 16px;\n  line-height: 24px;\n  color: #1d1d1d;\n}\n.side-menu__list svg {\n  margin-right: 5px;\n  width: 24px;\n  height: 24px;\n}\n.side-menu__list_socials {\n  display: flex;\n  margin-top: 35px;\n  padding-left: 0;\n  list-style: none;\n}\n.side-menu__list_socials-item:hover {\n  filter: invert(37%) sepia(61%) saturate(3651%) hue-rotate(212deg) brightness(90%) contrast(92%);\n}\n.side-menu__list_socials-item:hover svg path {\n  stroke: #457eff;\n}\n.side-menu__list_socials-item > img > svg {\n  background-color: #3568dd;\n}\n.side-menu__list_socials li {\n  margin: 0 32px 0 0;\n}\n.side-menu__list_socials-icon:hover {\n  color: #457eff;\n}\n.side-menu__list_small li {\n  display: flex;\n  column-gap: 10px;\n}\n.side-menu__list_small a {\n  font-family: Inter, sans-serif;\n  font-size: 12px;\n  line-height: 24px;\n  font-weight: 400;\n  color: #1d1d1d;\n}\n\n.side-menu__listmenu {\n  display: flex;\n  flex-direction: column;\n  margin-top: 24px;\n  row-gap: 16px;\n}\n.side-menu__listmenu-wrapper {\n  display: flex;\n  align-items: center;\n  justify-content: space-between;\n  cursor: pointer;\n  background-color: #fff;\n  border: 0;\n}\n.side-menu__listmenu-text {\n  font-family: Inter, sans-serif;\n  font-style: normal;\n  font-weight: 500;\n  font-size: 16px;\n  line-height: 24px;\n  color: #1d1d1d;\n}\n.side-menu__blue {\n  color: #3568dd;\n}\n.side-menu__blue b {\n  color: #3568dd;\n}\n\n.side-menu__list-link {\n  display: flex;\n  align-items: center;\n  height: 24px;\n}\n.side-menu__list-link_active {\n  color: #457eff;\n}\n.side-menu__list-link_active svg {\n  display: block;\n}\n.side-menu__list-link svg {\n  position: absolute;\n  right: 30px;\n}\n.side-menu__list-link:hover svg {\n  display: block;\n}\n\n.learn-more-btn {\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  height: 24px;\n  width: 80px;\n  font-weight: 500;\n  font-size: 11px;\n  line-height: 24px;\n  color: #457eff;\n  border: 1px solid #457eff;\n  border-radius: 8px;\n}\n.learn-more-btn:hover {\n  opacity: 70%;\n}\n\n.side-menu__list-vote {\n  display: flex;\n  align-items: center;\n  justify-content: space-between;\n}\n.side-menu__list-vote span {\n  color: #a2b2d8;\n}\n.side-menu__list-vote span:last-child {\n  display: none;\n  font-size: 11px;\n  padding: 4px 8px;\n  margin-left: 8px;\n  border-radius: 4px;\n  border: 1px solid #a2b2d8;\n  left: 110px;\n}\n.side-menu__list-vote:hover span:last-child {\n  display: block;\n}\n\n.side-menu__connect-mobile {\n  width: fit-content;\n  height: fit-content;\n  padding: 10px;\n  border-radius: 13px;\n  margin-left: auto;\n  margin-bottom: 0;\n  margin-right: 7px;\n  border: 2px solid #0e0e0e;\n}\n.side-menu__connect-mobile_connected {\n  border: 0;\n}\n\n.side-menu__hamburger {\n  display: flex;\n  border-radius: 15px;\n  height: 44px;\n  align-items: center;\n  justify-content: center;\n  border: 0;\n  padding: 0;\n  cursor: pointer;\n  background: #fff;\n}\n\n.side-menu__address-block-title {\n  font-size: 14px;\n  padding-left: 11px;\n  color: rgba(69, 126, 255, 0.6509803922);\n  display: block;\n  margin-top: 33px;\n}\n@media only screen and (max-width: 720px) {\n  .side-menu__address-block-title {\n    margin-top: 20px;\n  }\n}\n\n.address-block {\n  background: rgba(69, 126, 255, 0.0705882353);\n  padding: 17px 0 17px 22px;\n  display: flex;\n  align-items: center;\n  border-radius: 15px;\n  margin-top: 30px;\n  box-sizing: border-box;\n}\n.address-block span {\n  font-family: sans-serif;\n}\n.address-block button {\n  width: 32px;\n  height: 24px;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  border-radius: 2px;\n}\n\n.address-block__metamask-icon {\n  margin-right: 22px;\n}\n\n.address-block__copy {\n  margin-left: 5px;\n  margin-right: 8px;\n}\n\n.side-menu__address {\n  font-family: sans-serif;\n  margin-left: auto;\n  margin-right: 15px;\n}\n\n.side-menu__guide {\n  display: flex;\n  align-items: center;\n  width: fit-content;\n  margin: auto 0 0;\n  text-decoration: none;\n}\n@media only screen and (max-width: 720px) {\n  .side-menu__guide {\n    margin: 20px auto;\n  }\n}\n\n.side-menu__list_small li {\n  display: flex;\n  align-items: center;\n}\n.side-menu__list_small li img {\n  margin-right: 8px;\n}\n\n.menu-overlay {\n  position: fixed;\n  width: 100%;\n  height: 100vh;\n  background: #457eff;\n  opacity: 0.5;\n  z-index: 999;\n}\n\n.side-menu__list_socials-item--last:hover path {\n  fill: #457eff;\n  stroke: none !important;\n}\n\n.side-menu__list_socials-item--reddit:hover circle {\n  fill: #457eff;\n}\n\n.side-menu__nav-wrapper {\n  overflow: auto;\n  max-height: calc(100vh - 280px);\n  margin-top: 24px;\n  padding-right: 10px;\n}";
+  var css_248z = "/* width */\n::-webkit-scrollbar {\n  width: 8px;\n  height: 8px;\n}\n\n/* Track */\n::-webkit-scrollbar-track {\n  background: transparent;\n}\n\n/* Handle */\n::-webkit-scrollbar-thumb {\n  background: rgba(168, 183, 218, 0.5098039216);\n  border-radius: 5px;\n}\n\n/* Handle on hover */\n::-webkit-scrollbar-thumb:hover {\n  background: rgba(168, 183, 218, 0.5098039216);\n}\n\n.body {\n  margin: 0;\n  padding: 0;\n  box-sizing: border-box;\n}\n\n.side-menu-container {\n  position: fixed;\n  padding: 16px 0;\n  height: fit-content;\n  margin-left: 16px;\n  width: 320px;\n  z-index: 1000;\n  max-height: -webkit-fill-available;\n}\n@media only screen and (max-width: 428px) {\n  .side-menu-container {\n    width: 100%;\n    padding: 0;\n    margin-left: 0;\n  }\n}\n\n.side-menu {\n  position: relative;\n  display: flex;\n  flex-direction: column;\n  padding: 16px 24px;\n  width: 100%;\n  z-index: 999999;\n  background: #ffffff;\n  box-shadow: 0 8px 32px rgba(105, 142, 226, 0.24);\n  border-radius: 0 0 16px 0;\n  font-family: Inter, sans-serif;\n  box-sizing: border-box;\n  height: 64px;\n  overflow: hidden;\n}\n@media only screen and (max-width: 428px) {\n  .side-menu {\n    border-radius: 0;\n  }\n}\n.side-menu_expanded {\n  max-height: calc(100vh - 32px);\n  height: fit-content !important;\n  width: 100%;\n  border-radius: 8px;\n}\n@media only screen and (max-width: 720px) {\n  .side-menu_expanded {\n    max-height: 100vh;\n  }\n}\n@media only screen and (max-width: 428px) {\n  .side-menu_expanded {\n    padding-bottom: 100px !important;\n    border-radius: 0;\n    height: 100vh !important;\n  }\n}\n.side-menu p,\n.side-menu span,\n.side-menu button,\n.side-menu a {\n  font-family: Inter, sans-serif;\n  font-weight: 300;\n  line-height: 140%;\n  color: #1d1d1d;\n}\n\n.side-menu__mobile-wrapper {\n  display: flex;\n  align-items: center;\n  justify-content: space-between;\n  width: 272px;\n  height: 32px;\n}\n@media only screen and (max-width: 428px) {\n  .side-menu__mobile-wrapper {\n    width: 100%;\n  }\n}\n\n.side-menu__logo {\n  height: 32px;\n  width: auto;\n}\n.side-menu__connect-wallet {\n  display: flex;\n  margin-top: 40px;\n  column-gap: 8px;\n  align-items: center;\n  justify-content: center;\n  background: rgba(69, 126, 255, 0.07);\n  /* BRAND BLUE */\n  border: 1.5px solid #457eff;\n  border-radius: 16px;\n  color: #3568dd !important;\n  padding: 0 18px;\n  height: 58px;\n  font-size: 16px;\n  font-weight: 500;\n}\n.side-menu__connect-text {\n  display: flex;\n  align-items: center;\n  text-align: center;\n  color: #a2b2d8;\n  font-size: 12px;\n  margin-top: 8px;\n  font-weight: 400;\n  line-height: 15px;\n  padding: 0 24px;\n}\n\n.side-menu__content {\n  display: flex;\n  flex-direction: column;\n  padding: 0 !important;\n}\n\n.side-menu__title {\n  color: rgba(69, 126, 255, 0.45);\n  font-size: 14px;\n  padding-left: 11px;\n  border-bottom: 1px solid rgba(69, 126, 255, 0.45);\n  margin-top: 27px;\n  display: block;\n}\n\n.side-menu__content-list {\n  margin-bottom: 28px;\n  margin-top: 4px;\n}\n\n.side-menu__list {\n  display: flex;\n  flex-direction: column;\n  row-gap: 16px;\n  padding-left: 0;\n  list-style: none;\n  margin: 0;\n}\n.side-menu__list a {\n  color: #0e0e0e;\n  text-decoration: none;\n  font-family: Inter, sans-serif;\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n}\n.side-menu__list li {\n  height: 24px;\n  font-family: Inter, sans-serif;\n  font-style: normal;\n  font-weight: 400;\n  font-size: 16px;\n  line-height: 24px;\n  color: #1d1d1d;\n}\n.side-menu__list svg {\n  margin-right: 5px;\n  width: 24px;\n  height: 24px;\n}\n.side-menu__list_socials {\n  display: flex;\n  margin-top: 35px;\n  padding-left: 0;\n  list-style: none;\n}\n.side-menu__list_socials-item:hover {\n  filter: invert(37%) sepia(61%) saturate(3651%) hue-rotate(212deg) brightness(90%) contrast(92%);\n}\n.side-menu__list_socials-item:hover svg path {\n  stroke: #457eff;\n}\n.side-menu__list_socials-item > img > svg {\n  background-color: #3568dd;\n}\n.side-menu__list_socials li {\n  margin: 0 32px 0 0;\n}\n.side-menu__list_socials-icon:hover {\n  color: #457eff;\n}\n.side-menu__list_small li {\n  display: flex;\n  column-gap: 10px;\n}\n.side-menu__list_small a {\n  font-family: Inter, sans-serif;\n  font-size: 12px;\n  line-height: 24px;\n  font-weight: 400;\n  color: #1d1d1d;\n}\n\n.side-menu__listmenu {\n  display: flex;\n  flex-direction: column;\n  margin-top: 24px;\n  row-gap: 16px;\n}\n.side-menu__listmenu-wrapper {\n  display: flex;\n  align-items: center;\n  justify-content: space-between;\n  cursor: pointer;\n  background-color: #fff;\n  border: 0;\n}\n.side-menu__listmenu-text {\n  font-family: Inter, sans-serif;\n  font-style: normal;\n  font-weight: 500;\n  font-size: 16px;\n  line-height: 24px;\n  color: #1d1d1d;\n}\n.side-menu__blue {\n  color: #3568dd;\n}\n.side-menu__blue b {\n  color: #3568dd;\n}\n\n.side-menu__list-link {\n  display: flex;\n  align-items: center;\n  height: 24px;\n}\n.side-menu__list-link_active {\n  color: #457eff;\n}\n.side-menu__list-link_active svg {\n  display: block;\n}\n.side-menu__list-link svg {\n  position: absolute;\n  right: 30px;\n}\n.side-menu__list-link:hover svg {\n  display: block;\n}\n\n.learn-more-btn {\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  height: 24px;\n  width: 80px;\n  font-weight: 500;\n  font-size: 11px;\n  line-height: 24px;\n  color: #457eff;\n  border: 1px solid #457eff;\n  border-radius: 8px;\n}\n.learn-more-btn:hover {\n  opacity: 70%;\n}\n\n.side-menu__list-vote {\n  display: flex;\n  align-items: center;\n  justify-content: space-between;\n}\n.side-menu__list-vote span {\n  color: #a2b2d8;\n}\n.side-menu__list-vote span:last-child {\n  display: none;\n  font-size: 11px;\n  padding: 4px 8px;\n  margin-left: 8px;\n  border-radius: 4px;\n  border: 1px solid #a2b2d8;\n  left: 110px;\n}\n.side-menu__list-vote:hover span:last-child {\n  display: block;\n}\n\n.side-menu__connect-mobile {\n  width: fit-content;\n  height: fit-content;\n  padding: 10px;\n  border-radius: 13px;\n  margin-left: auto;\n  margin-bottom: 0;\n  margin-right: 7px;\n  border: 2px solid #0e0e0e;\n}\n.side-menu__connect-mobile_connected {\n  border: 0;\n}\n\n.side-menu__hamburger {\n  display: flex;\n  border-radius: 15px;\n  height: 44px;\n  align-items: center;\n  justify-content: center;\n  border: 0;\n  padding: 0;\n  cursor: pointer;\n  background: #fff;\n}\n\n.side-menu__address-block-title {\n  font-size: 14px;\n  padding-left: 11px;\n  color: rgba(69, 126, 255, 0.6509803922);\n  display: block;\n  margin-top: 33px;\n}\n@media only screen and (max-width: 720px) {\n  .side-menu__address-block-title {\n    margin-top: 20px;\n  }\n}\n\n.address-block {\n  background: rgba(69, 126, 255, 0.0705882353);\n  padding: 17px 0 17px 22px;\n  display: flex;\n  align-items: center;\n  border-radius: 15px;\n  margin-top: 30px;\n  box-sizing: border-box;\n}\n.address-block span {\n  font-family: sans-serif;\n}\n.address-block button {\n  width: 32px;\n  height: 24px;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  border-radius: 2px;\n}\n\n.address-block__metamask-icon {\n  margin-right: 22px;\n}\n\n.address-block__copy {\n  margin-left: 5px;\n  margin-right: 8px;\n}\n\n.side-menu__address {\n  font-family: sans-serif;\n  margin-left: auto;\n  margin-right: 15px;\n}\n\n.side-menu__guide {\n  display: flex;\n  align-items: center;\n  width: fit-content;\n  margin: auto 0 0;\n  text-decoration: none;\n}\n@media only screen and (max-width: 720px) {\n  .side-menu__guide {\n    margin: 20px auto;\n  }\n}\n\n.side-menu__list_small li {\n  display: flex;\n  align-items: center;\n}\n.side-menu__list_small li img {\n  margin-right: 18px;\n}\n\n.menu-overlay {\n  position: fixed;\n  width: 100%;\n  height: 100vh;\n  background: #457eff;\n  opacity: 0.5;\n  z-index: 999;\n}\n\n.side-menu__list_socials-item--last:hover path {\n  fill: #457eff;\n  stroke: none !important;\n}\n\n.side-menu__list_socials-item--reddit:hover circle {\n  fill: #457eff;\n}\n\n.side-menu__nav-wrapper {\n  overflow: auto;\n  max-height: calc(100vh - 280px);\n  margin-top: 24px;\n  padding-right: 10px;\n}";
   styleInject(css_248z);
 
   var repositoryName = 'airdao';
@@ -2820,7 +2842,7 @@
 
   var Submenu = function Submenu(_ref) {
     var submenu = _ref.submenu;
-    var _useState = React.useState(true),
+    var _useState = React.useState(false),
       _useState2 = _slicedToArray(_useState, 2),
       isOpen = _useState2[0],
       setIsOpen = _useState2[1];
@@ -2851,15 +2873,16 @@
           var icon = _ref2.icon,
             name = _ref2.name,
             link = _ref2.link;
-          return /*#__PURE__*/jsxRuntime.exports.jsxs("li", {
-            children: [/*#__PURE__*/jsxRuntime.exports.jsx("img", {
-              src: icon.url,
-              alt: icon.alt
-            }), /*#__PURE__*/jsxRuntime.exports.jsx("a", {
+          return /*#__PURE__*/jsxRuntime.exports.jsx("li", {
+            children: /*#__PURE__*/jsxRuntime.exports.jsxs("a", {
               href: link.url,
               target: link.target,
-              children: name
-            })]
+              rel: name === 'Home' || name === 'Team' ? '' : 'nofollow',
+              children: [/*#__PURE__*/jsxRuntime.exports.jsx("img", {
+                src: icon.url,
+                alt: icon.alt
+              }), name]
+            })
           }, name);
         })
       })]
@@ -2882,8 +2905,10 @@
       setOverlayVisible = _useState4[1];
     React.useEffect(function () {
       var handleResize = function handleResize() {
-        setIsOpen(initHidden ? false : window.innerWidth > 1050);
-        setOverlayVisible(false);
+        if (window.innerWidth > 430) {
+          setIsOpen(initHidden ? false : window.innerWidth > 1050);
+          setOverlayVisible(false);
+        }
       };
       window.addEventListener('resize', handleResize, true);
     }, []);
@@ -2988,6 +3013,7 @@
                         link = _ref3.link;
                       return /*#__PURE__*/jsxRuntime.exports.jsx("li", {
                         children: /*#__PURE__*/jsxRuntime.exports.jsx("a", {
+                          rel: "nofollow",
                           href: link.url,
                           target: link.target,
                           className: "side-menu__list_socials-item",
