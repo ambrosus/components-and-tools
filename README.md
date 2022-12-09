@@ -2,9 +2,6 @@
 Library with common components, hooks and utils for airdao projects.
 
 ## Requirements:
-For this lib strongly required
-```react-scripts >= 5``` or ```webpack >= 5```
-and this peer dependencies:
 
 ``` .json
 "@web3-react/core": "^6.1.9",
@@ -15,11 +12,11 @@ and this peer dependencies:
 
 ## Installation:
 ``` 
-npm install https://github.com/ambrosus/airdao-components-and-tools
+npm install https://github.com/ambrosus/airdao-components-and-tools#webpack<5
 ```
 or
 ```
-yarn add https://github.com/ambrosus/airdao-components-and-tools
+yarn add https://github.com/ambrosus/airdao-components-and-tools#webpack<5
 ```
 You can use https://github.com/ambrosus/airdao-components-and-tools#dev branch to see the latest updates
 
@@ -41,7 +38,7 @@ This needed to be sure that useAutoLogin got previous login from local storage a
 ## Usage:
 ### Menu
 ```jsx
-import { Menu } from 'airdao-components-and-tools/components';
+import { Menu } from 'airdao-components-and-tools';
 import { useWeb3React } from '@web3-react/core';
 
 const App = () => {
@@ -71,7 +68,7 @@ const App = () => {
 
 ### useAutoLogin
 ```jsx
-import { useAutoLogin } from 'airdao-components-and-tools/hooks';
+import { useAutoLogin } from 'airdao-components-and-tools';
 import { useWeb3React } from '@web3-react/core';
 
 const App = () => {
@@ -88,7 +85,7 @@ const App = () => {
 
 ### useAuthorization
 ```jsx
-import { useAuthorization } from 'airdao-components-and-tools/hooks';
+import { useAuthorization } from 'airdao-components-and-tools';
 import { useWeb3React } from '@web3-react/core';
 
 const SomeConnectPage = () => {

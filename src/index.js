@@ -1,9 +1,28 @@
-import * as hooks from './hooks';
-import * as utils from './utils';
-import * as components from './components';
+import { useAuthorization, useAutoLogin } from './hooks';
+import {
+  defaultWalletConnectConnector,
+  defaultInjectedConnector,
+  changeChainId,
+  allAmbNetworksConfig,
+  getCurrentAmbNetwork,
+} from './utils';
+import {
+  WalletModal,
+  Menu,
+  MetamaskConnectButton,
+  WalletConnectButton,
+} from './components';
 
 export {
-	hooks,
-	utils,
-	components
-}
+  useAuthorization,
+  useAutoLogin,
+  defaultWalletConnectConnector,
+  defaultInjectedConnector,
+  changeChainId,
+  allAmbNetworksConfig,
+  getCurrentAmbNetwork,
+  WalletModal,
+  Menu,
+  MetamaskConnectButton,
+  WalletConnectButton,
+};
