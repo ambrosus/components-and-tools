@@ -4,7 +4,7 @@ import { ArrowDown } from '../assets/ArrowDown';
 import { PrismicText } from '@prismicio/react';
 
 const Submenu = ({ submenu }) => {
-  const [isOpen, setIsOpen] = useState(true);
+  const [isOpen, setIsOpen] = useState(false);
 
   return (
     <div className='side-menu__listmenu'>
@@ -26,8 +26,12 @@ const Submenu = ({ submenu }) => {
       >
         {submenu?.items.map(({ icon, name, link }) => (
           <li key={name}>
-            <img src={icon.url} alt={icon.alt} />
-            <a href={link.url} target={link.target}>
+            <a
+              href={link.url}
+              target={link.target}
+              rel={(name === 'Home' || name === 'Team') ? '' : 'nofollow'}
+            >
+              <img src={icon.url} alt={icon.alt} />
               {name}
             </a>
           </li>
