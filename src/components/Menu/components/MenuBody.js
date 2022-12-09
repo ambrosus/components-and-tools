@@ -16,9 +16,12 @@ const MenuBody = ({ address, login, logout, initHidden, customLogo }) => {
   const [overlayVisible, setOverlayVisible] = useState(false);
 
   useEffect(() => {
+
     const handleResize = () => {
-      setIsOpen(initHidden ? false : window.innerWidth > 1050);
-      setOverlayVisible(false);
+      if (window.innerWidth > 430) {
+        setIsOpen(initHidden ? false : window.innerWidth > 1050);
+        setOverlayVisible(false);
+      }
     };
     window.addEventListener('resize', handleResize, true);
   }, []);
@@ -131,6 +134,7 @@ const MenuBody = ({ address, login, logout, initHidden, customLogo }) => {
                       {data?.socials.map(({ icon, link }) => (
                         <li key={link.url}>
                           <a
+                            rel="nofollow"
                             href={link.url}
                             target={link.target}
                             className='side-menu__list_socials-item'
