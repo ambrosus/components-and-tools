@@ -19,7 +19,7 @@ const Menu = ({
 }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const toggleModal = () => setIsModalOpen((prev) => !prev);
-  const { account } = web3ReactInstance;
+  const { account, connector } = web3ReactInstance;
   const { loginMetamask, loginWalletConnect, logout } = useAuthorization(
     web3ReactInstance,
     configuredInjectedConnector,
@@ -43,6 +43,7 @@ const Menu = ({
           logout,
           initHidden,
           customLogo,
+          connector,
         }}
       />
     </PrismicProvider>

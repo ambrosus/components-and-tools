@@ -403,8 +403,17 @@
   }
 }
 
-.address-block__metamask-icon {
+.address-block__wallet-icon {
   margin-right: 22px;
+  width: 22px;
+
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+
+  & > svg {
+    width: 100%;
+  }
 }
 
 .address-block__copy {

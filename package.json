@@ -1,6 +1,6 @@
 {
   "name": "airdao-components-and-tools",
-  "version": "0.0.7",
+  "version": "0.0.9-webpack<5",
   "private": false,
   "description": "Components, hooks and utils library for airdao web apps",
   "type": "module",
