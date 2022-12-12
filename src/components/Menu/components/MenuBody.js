@@ -8,7 +8,14 @@ import { Wallet } from '../assets/Wallet';
 import { LearnMoreBtn } from '../assets/LearnMoreBtn';
 import Submenu from './Submenu';
 
-const MenuBody = ({ address, login, logout, initHidden, customLogo }) => {
+const MenuBody = ({
+  address,
+  login,
+  logout,
+  connector,
+  initHidden,
+  customLogo,
+}) => {
   const [isOpen, setIsOpen] = useState(
     initHidden ? false : window.innerWidth > 1050
   );
@@ -16,7 +23,6 @@ const MenuBody = ({ address, login, logout, initHidden, customLogo }) => {
   const [overlayVisible, setOverlayVisible] = useState(false);
 
   useEffect(() => {
-
     const handleResize = () => {
       if (window.innerWidth > 430) {
         setIsOpen(initHidden ? false : window.innerWidth > 1050);
@@ -72,7 +78,7 @@ const MenuBody = ({ address, login, logout, initHidden, customLogo }) => {
             <>
               <div className='side-menu__content'>
                 {address ? (
-                  <AddressBlock address={address} logout={logout} />
+                  <AddressBlock {...{ address, logout, connector }} />
                 ) : (
                   <>
                     <button
@@ -134,7 +140,7 @@ const MenuBody = ({ address, login, logout, initHidden, customLogo }) => {
                       {data?.socials.map(({ icon, link }) => (
                         <li key={link.url}>
                           <a
-                            rel="nofollow"
+                            rel='nofollow'
                             href={link.url}
                             target={link.target}
                             className='side-menu__list_socials-item'
