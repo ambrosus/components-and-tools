@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useMemo, useState } from 'react';
 import './index.scss';
 import { PrismicProvider } from '@prismicio/react';
 import { client } from './prismic';
@@ -26,6 +26,12 @@ const Menu = ({
     configuredWalletConnectConnector
   );
 
+  const connectorType = useMemo(() => {
+    if (connector === configuredInjectedConnector) return 'injected';
+    if (connector === configuredWalletConnectConnector) return 'wallet-connect';
+    return undefined;
+  }, [connector]);
+
   return (
     <PrismicProvider client={client}>
       <WalletModal
@@ -43,7 +49,7 @@ const Menu = ({
           logout,
           initHidden,
           customLogo,
-          connector,
+          connectorType,
         }}
       />
     </PrismicProvider>

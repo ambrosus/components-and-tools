@@ -12,7 +12,7 @@ const MenuBody = ({
   address,
   login,
   logout,
-  connector,
+  connectorType,
   initHidden,
   customLogo,
 }) => {
@@ -78,7 +78,7 @@ const MenuBody = ({
             <>
               <div className='side-menu__content'>
                 {address ? (
-                  <AddressBlock {...{ address, logout, connector }} />
+                  <AddressBlock {...{ address, logout, connectorType }} />
                 ) : (
                   <>
                     <button

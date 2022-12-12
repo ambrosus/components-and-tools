@@ -7,7 +7,7 @@ import { Logout } from '../assets/Logout';
 import { Check } from '../assets/Check';
 import { Copy } from '../assets/Copy';
 
-const AddressBlock = ({ address = '', logout, connector }) => {
+const AddressBlock = ({ address = '', logout, connectorType }) => {
   const [isCopied, setIsCopied] = useState(false);
 
   const copyToClipboard = () => {
@@ -20,15 +20,11 @@ const AddressBlock = ({ address = '', logout, connector }) => {
     return null;
   };
 
-  const connectorName = useMemo(() => connector.constructor.name, [connector]);
-
   return (
     <div className='address-block'>
       <div className='address-block__wallet-icon'>
-        {connectorName === 'InjectedConnector' ? <Metamask /> : null}
-        {connectorName === 'WalletConnectConnector' ? (
-          <WalletConnectLogo />
-        ) : null}
+        {connectorType === 'injected' ? <Metamask /> : null}
+        {connectorType === 'wallet-connect' ? <WalletConnectLogo /> : null}
       </div>
       <span>{`${address.slice(0, 4)}...${address.slice(
         address.length - 4,
