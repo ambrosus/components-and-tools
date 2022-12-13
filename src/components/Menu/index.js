@@ -9,6 +9,8 @@ import {
   defaultInjectedConnector,
   defaultWalletConnectConnector,
 } from '../../utils';
+import { InjectedConnector } from '@web3-react/injected-connector';
+import { WalletConnectConnector } from '@web3-react/walletconnect-connector';
 
 const Menu = ({
   web3ReactInstance,
@@ -27,8 +29,16 @@ const Menu = ({
   );
 
   const connectorType = useMemo(() => {
-    if (connector === configuredInjectedConnector) return 'injected';
-    if (connector === configuredWalletConnectConnector) return 'wallet-connect';
+    if (
+      connector === configuredInjectedConnector ||
+      connector instanceof InjectedConnector
+    )
+      return 'injected';
+    if (
+      connector === configuredWalletConnectConnector ||
+      connector instanceof WalletConnectConnector
+    )
+      return 'wallet-connect';
     return undefined;
   }, [connector]);
 
