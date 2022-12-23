@@ -29,7 +29,7 @@ const Submenu = ({ submenu }) => {
             <a
               href={link.url}
               target={link.target}
-              rel={(name === 'Home' || name === 'Team') ? '' : 'nofollow'}
+              rel={(name === 'Home' || name === 'Team' || name === 'Governance') ? '' : 'nofollow'}
             >
               <img src={icon.url} alt={icon.alt} />
               {name}
