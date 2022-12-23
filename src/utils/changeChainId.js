@@ -1,7 +1,7 @@
 import { utils } from 'ethers';
 
 const changeChainId = async (provider, selectedNetwork) => {
-  const hexChainId = utils.hexValue(+selectedNetwork);
+  const hexChainId = utils.hexValue(+selectedNetwork.chainId);
 
   try {
     await provider.request({
@@ -9,6 +9,7 @@ const changeChainId = async (provider, selectedNetwork) => {
       params: [{ chainId: hexChainId }],
     });
   } catch (switchError) {
+    console.log(switchError);
     await provider.request({
       method: 'wallet_addEthereumChain',
       params: [

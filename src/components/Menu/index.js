@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useMemo, useState } from 'react';
 import './index.scss';
 import { PrismicProvider } from '@prismicio/react';
 import { client } from './prismic';
@@ -9,6 +9,8 @@ import {
   defaultInjectedConnector,
   defaultWalletConnectConnector,
 } from '../../utils';
+import { InjectedConnector } from '@web3-react/injected-connector';
+import { WalletConnectConnector } from '@web3-react/walletconnect-connector';
 
 const Menu = ({
   web3ReactInstance,
@@ -19,12 +21,26 @@ const Menu = ({
 }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const toggleModal = () => setIsModalOpen((prev) => !prev);
-  const { account } = web3ReactInstance;
+  const { account, connector } = web3ReactInstance;
   const { loginMetamask, loginWalletConnect, logout } = useAuthorization(
     web3ReactInstance,
     configuredInjectedConnector,
     configuredWalletConnectConnector
   );
+
+  const connectorType = useMemo(() => {
+    if (
+      connector === configuredInjectedConnector ||
+      connector instanceof InjectedConnector
+    )
+      return 'injected';
+    if (
+      connector === configuredWalletConnectConnector ||
+      connector instanceof WalletConnectConnector
+    )
+      return 'wallet-connect';
+    return undefined;
+  }, [connector]);
 
   return (
     <PrismicProvider client={client}>
@@ -43,6 +59,7 @@ const Menu = ({
           logout,
           initHidden,
           customLogo,
+          connectorType,
         }}
       />
     </PrismicProvider>

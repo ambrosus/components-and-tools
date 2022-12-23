@@ -1,9 +1,9 @@
 {
   "name": "airdao-components-and-tools",
-  "version": "0.0.7",
+  "version": "0.0.10",
   "private": false,
   "description": "Components, hooks and utils library for airdao web apps",
-  "main": "./index.js",
+  "main": "./dist/index.js",
   "author": "kishkoigor",
   "license": "MIT",
   "scripts": {
