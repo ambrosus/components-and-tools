@@ -2,7 +2,6 @@ import {
   defaultInjectedConnector,
   defaultWalletConnectConnector,
 } from '../utils';
-import { Buffer } from 'buffer';
 
 const useAuthorization = (
     web3ReactInstance,
@@ -47,6 +46,3 @@ const useAuthorization = (
 };
 
 export default useAuthorization;
-
-// https://github.com/Uniswap/web3-react/issues/423#issuecomment-1161180629
-window.Buffer = window.Buffer || Buffer;

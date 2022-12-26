@@ -1,0 +1,61 @@
+.modal-button {
+  width: 100%;
+  height: 5rem;
+  margin-bottom: 8px;
+  padding: 16px;
+  background: #ffffff;
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  grid-column-gap: 12px;
+  border-radius: 16px;
+  border-color: transparent;
+  box-shadow: 0 16px 32px rgba(105, 142, 226, 0.2);
+  cursor: pointer;
+
+  @media screen and (max-width: 500px) {
+    width: 100%;
+    padding: 16px 8px;
+  }
+}
+
+.modal-button__logo {
+  height: 48px;
+  width: 48px;
+  background: white;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.modal-button__text-container {
+  text-align: left;
+}
+
+.modal-button__heading {
+  font-family: 'Proxima Nova', sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 100%;
+  color: #212121;
+  margin-bottom: 14px;
+
+  @media screen and (max-width: 481px) {
+    font-size: 14px !important;
+  }
+}
+
+.modal-button__text {
+  font-family: 'Proxima Nova', sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  color: #a2b2d8;
+}
+
+.modal-button__chevron {
+  width: 16px;
+  height: 16px;
+  transform: rotate(-90deg);
+  margin-left: auto;
+}
