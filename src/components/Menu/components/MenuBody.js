@@ -32,6 +32,10 @@ const MenuBody = ({
     window.addEventListener('resize', handleResize, true);
   }, []);
 
+  useEffect(() => {
+    document.body.style.overflow = isOpen ? 'hidden' : 'auto';
+  }, [isOpen]);
+
   const handleOpen = () => {
     setOverlayVisible(!isOpen && window.innerWidth < 1050);
     setIsOpen((state) => !state);
