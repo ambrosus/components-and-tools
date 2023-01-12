@@ -33,7 +33,9 @@ const MenuBody = ({
   }, []);
 
   useEffect(() => {
-    document.body.style.overflow = isOpen ? 'hidden' : 'auto';
+    if (window.innerWidth < 1050) {
+      document.body.style.overflow = isOpen ? 'hidden' : 'auto';
+    }
   }, [isOpen]);
 
   const handleOpen = () => {
