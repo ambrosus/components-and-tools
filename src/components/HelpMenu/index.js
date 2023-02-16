@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import helpMenuPropTypes from './HelpMenu.propTypes';
 import './index.scss';
 import close from './assets/close-help.svg';
+import play from './assets/play.svg';
 import { ReactComponent as Question } from './assets/question.svg';
 
 /*
@@ -50,7 +51,8 @@ const HelpMenu = ({ title, description, video, guideLink, links, socials }) => {
         {video && (
           <div className='help__video-preview'>
             <a href={video.url} target={'_blank'} rel='noreferrer'>
-              <img src={video.thumbnailSrc} alt={'#'} />
+              <img className='help__preview-img' src={video.thumbnailSrc} alt={'#'} />
+              <img className='help__play' src={play} alt='play button' />
             </a>
           </div>
         )}
@@ -62,7 +64,6 @@ const HelpMenu = ({ title, description, video, guideLink, links, socials }) => {
         >
           {guideLink.text}
         </a>
-        <div className='help__hr' />
         {links && (
           <ul className='help__links'>
             {links.map(({ url, text }) => (
@@ -74,7 +75,6 @@ const HelpMenu = ({ title, description, video, guideLink, links, socials }) => {
             ))}
           </ul>
         )}
-        <div className='help__hr' />
         {socials && (
           <div className='help__socials'>
             {socials.map(({ url, iconSrc }) => (
@@ -90,7 +90,6 @@ const HelpMenu = ({ title, description, video, guideLink, links, socials }) => {
             ))}
           </div>
         )}
-        <div className='help__hr' />
         <p className='help__footer'>
           AirDAO version V0.2
           <br />
