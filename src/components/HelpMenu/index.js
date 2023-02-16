@@ -13,7 +13,7 @@ import { ReactComponent as Question } from './assets/question.svg';
     guideLink: { url: string, text: string }, required
     links: [{ url: string, text: string }], length <= 5
     socials: [{ url: string, iconSrc: string }]
-    appDetails: { name: string, version: string or number, lastUpdated: string }
+    appDetails: { name: string, version: string, lastUpdated: string }
 */
 
 const HelpMenu = ({
@@ -105,7 +105,7 @@ const HelpMenu = ({
         )}
         {appDetails && (
           <p className='help__footer'>
-            {appDetails.name} version V{appDetails.version}
+            {appDetails.name} {appDetails.version}
             <br />
             {appDetails.lastUpdated}
           </p>

@@ -53,7 +53,7 @@ const socialsType = PropTypes.arrayOf(
 
 const appDetailsType = PropTypes.shape({
   name: PropTypes.string,
-  version: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  version: PropTypes.string,
   lastUpdated: PropTypes.string,
 });
 
