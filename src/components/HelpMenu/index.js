@@ -13,9 +13,18 @@ import { ReactComponent as Question } from './assets/question.svg';
     guideLink: { url: string, text: string }, required
     links: [{ url: string, text: string }], length <= 5
     socials: [{ url: string, iconSrc: string }]
+    appDetails: { name: string, version: string or number, lastUpdated: string }
 */
 
-const HelpMenu = ({ title, description, video, guideLink, links, socials }) => {
+const HelpMenu = ({
+  title,
+  description,
+  video,
+  guideLink,
+  links,
+  socials,
+  appDetails,
+}) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const handleOpen = () => setIsOpen((state) => !state);
@@ -51,7 +60,11 @@ const HelpMenu = ({ title, description, video, guideLink, links, socials }) => {
         {video && (
           <div className='help__video-preview'>
             <a href={video.url} target={'_blank'} rel='noreferrer'>
-              <img className='help__preview-img' src={video.thumbnailSrc} alt={'#'} />
+              <img
+                className='help__preview-img'
+                src={video.thumbnailSrc}
+                alt={'#'}
+              />
               <img className='help__play' src={play} alt='play button' />
             </a>
           </div>
@@ -90,11 +103,13 @@ const HelpMenu = ({ title, description, video, guideLink, links, socials }) => {
             ))}
           </div>
         )}
-        <p className='help__footer'>
-          AirDAO version V0.2
-          <br />
-          Updated 2 days ago
-        </p>
+        {appDetails && (
+          <p className='help__footer'>
+            {appDetails.name} version V{appDetails.version}
+            <br />
+            {appDetails.lastUpdated}
+          </p>
+        )}
       </div>
       <button
         type='button'

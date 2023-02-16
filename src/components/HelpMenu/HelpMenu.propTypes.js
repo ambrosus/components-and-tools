@@ -3,10 +3,12 @@ import PropTypes from 'prop-types';
 const titleType = PropTypes.string.isRequired;
 
 const descriptionTypeChecker = ({ description }) => {
-  const error = Error('description must be a string with length <= 150');
+  const error = Error(
+    'description is required and must be a string with length <= 150'
+  );
 
   if (typeof description !== 'string') return error;
-  if (description.length > 150) return error;
+  if (description.length > 150 || description.length === 0) return error;
 
   return null;
 };
@@ -49,6 +51,12 @@ const socialsType = PropTypes.arrayOf(
   })
 );
 
+const appDetailsType = PropTypes.shape({
+  name: PropTypes.string,
+  version: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  lastUpdated: PropTypes.string,
+});
+
 const helpMenuPropTypes = {
   title: titleType,
   description: descriptionTypeChecker,
@@ -56,6 +64,7 @@ const helpMenuPropTypes = {
   video: videoType,
   links: linksTypeChecker,
   socials: socialsType,
+  appDetails: appDetailsType,
 };
 
 export default helpMenuPropTypes;
