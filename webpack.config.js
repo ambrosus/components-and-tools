@@ -20,7 +20,8 @@ module.exports = {
       { test: /\.js$/, exclude: /node_modules/, loader: 'babel-loader' },
       {
         test: /\.svg$/i,
-        use: ['@svgr/webpack'],
+        issuer: /\.[jt]sx?$/,
+        use: ['@svgr/webpack', 'url-loader'],
       },
       {
         test: /\.(css|scss)$/,
