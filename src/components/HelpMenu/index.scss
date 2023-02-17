@@ -138,6 +138,11 @@
     justify-content: space-between;
     padding-top: 7px;
     margin-bottom: 7px;
+
+    @media screen and (max-width: 600px) {
+      padding-top: 20px;
+      margin-bottom: 20px;
+    }
   }
 
   .help__social {
