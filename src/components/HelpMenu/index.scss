@@ -141,6 +141,11 @@
     justify-content: space-between;
     padding-top: 7px;
     margin-bottom: 7px;
+
+    @media screen and (max-width: 600px) {
+      padding-top: 20px;
+      margin-bottom: 20px;
+    }
   }
 
   .help__social {
@@ -201,8 +206,6 @@
 
   .help__play {
     position: absolute;
-    width: 21px;
-    height: 21px;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
