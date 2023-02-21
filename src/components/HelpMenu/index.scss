@@ -54,6 +54,13 @@
     pointer-events: initial;
   }
 
+  @media screen and (max-height: 693px) and (min-width: 600px){
+    display: none;
+    top: 16px;
+    bottom: auto;
+    height: calc(100vh - 16px - 90px);
+  }
+
   @media screen and (max-width: 600px) {
     width: 100vw;
     height: 100vh;
@@ -198,7 +205,7 @@
   }
 
   .help__links, .help__footer, .help__socials {
-    border-top: 1px solid #e6e6e6;
+    border-top: 1px solid #A2B2D8;
   }
 
   .help__play {
@@ -218,7 +225,7 @@
   position: fixed;
   bottom: 24px;
   right: 24px;
-  z-index: 9998;
+  z-index: 1;
   background: #3568DD;
   display: flex;
   align-items: center;
