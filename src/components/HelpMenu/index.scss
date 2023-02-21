@@ -58,7 +58,6 @@
   }
 
   @media screen and (max-height: 693px) and (min-width: 600px){
-    display: none;
     top: 16px;
     bottom: auto;
     height: calc(100vh - 16px - 90px);
