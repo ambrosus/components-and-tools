@@ -1,4 +1,34 @@
 import { HelpMenu } from '../dist/components';
+import { getBranchLastUpdatedString } from '../dist/utils';
+import { useEffect, useState } from 'react';
+import packageJson from '../package.json';
+
+const HelpMenuWithContent = () => {
+  const [lastUpdated, setLastUpdated] = useState('');
+  useEffect(() => {
+    (async () => {
+      const lastUpdated = await getBranchLastUpdatedString(
+        'ambrosus',
+        'airdao-components-and-tools',
+        'dev'
+      );
+      setLastUpdated(lastUpdated);
+    })();
+  }, []);
+
+  return (
+    <HelpMenu
+      {...helpContent}
+      appDetails={{
+        name: packageJson.name,
+        version: packageJson.version,
+        lastUpdated,
+      }}
+    />
+  );
+};
+
+export default HelpMenuWithContent;
 
 const helpContent = {
   title: 'AirDao Bridge',
@@ -62,9 +92,3 @@ const helpContent = {
     },
   ],
 };
-
-const HelpMenuWithContent = () => {
-  return <HelpMenu {...helpContent} />;
-};
-
-export default HelpMenuWithContent;
