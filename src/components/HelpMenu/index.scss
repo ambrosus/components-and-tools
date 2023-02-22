@@ -109,6 +109,18 @@
     margin-bottom: 24px;
     overflow: hidden;
 
+    @media screen and (max-width: 600px) {
+      height: 250px;
+    }
+
+    @media screen and (max-width: 520px) {
+      height: 200px;
+    }
+
+    @media screen and (max-width: 380px) {
+      height: 150px;
+    }
+
     a {
       display: block;
       position: relative;
@@ -138,6 +150,7 @@
     @media screen and (max-width: 600px) {
       font-size: 20px;
       line-height: 30px;
+      margin-bottom: 17px;
     }
   }
 
@@ -238,6 +251,11 @@
   margin-left: auto;
   transition: .2s;
   box-shadow: 0 8px 49px rgba(162, 178, 216, 0.65);
+
+  @media screen and (max-width: 600px) {
+    right: 16px;
+    bottom: 16px;
+  }
 
   path {
     fill: white;
