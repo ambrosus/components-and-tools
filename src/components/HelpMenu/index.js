@@ -30,9 +30,6 @@ const HelpMenu = ({
   const handleOpen = () => setIsOpen((state) => !state);
 
   useEffect(() => {
-  }, []);
-
-  useEffect(() => {
     const appHeight = () => {
       document.documentElement.style.setProperty(
         '--app-height',
@@ -40,6 +37,11 @@ const HelpMenu = ({
       );
     };
 
+    window.addEventListener('resize', appHeight);
+    appHeight();
+  }, []);
+
+  useEffect(() => {
     const handler = (e) => {
       if (
         !document.querySelector('.help').contains(e.target) &&
@@ -53,11 +55,9 @@ const HelpMenu = ({
 
     if (isOpen) {
       window.addEventListener('mousedown', handler);
-      window.addEventListener('resize', appHeight);
     }
     return () => {
       window.removeEventListener('mousedown', handler);
-      window.addEventListener('resize', appHeight);
     };
   }, [isOpen]);
 
