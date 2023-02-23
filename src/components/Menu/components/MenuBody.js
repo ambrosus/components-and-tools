@@ -88,6 +88,7 @@ const MenuBody = ({
                 ) : (
                   <>
                     <button
+                      id='connect-wallet'
                       type='button'
                       className='side-menu__connect-wallet'
                       onClick={login}
@@ -105,7 +106,7 @@ const MenuBody = ({
                   <div className='side-menu__content-list'>
                     <ul className='side-menu__list'>
                       {data?.links.map(
-                        ({ name, link, guide_link, isdisabled }) =>
+                        ({ name, link, guide_link, isdisabled }, i) =>
                           !isdisabled ? (
                             <li key={name}>
                               <a
@@ -119,6 +120,7 @@ const MenuBody = ({
                                 {name}
                                 {guide_link.url && currentApp === link.type && (
                                   <a
+                                    id={`products-${i}`}
                                     href={guide_link.url}
                                     target={guide_link.target}
                                   >

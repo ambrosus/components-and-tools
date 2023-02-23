@@ -27,6 +27,7 @@ const Submenu = ({ submenu }) => {
         {submenu?.items.map(({ icon, name, link }) => (
           <li key={name}>
             <a
+              id={name.replace(' ', '-')}
               href={link.url}
               target={link.target}
               rel={(name === 'Home' || name === 'Team' || name === 'Governance') ? '' : 'nofollow'}
