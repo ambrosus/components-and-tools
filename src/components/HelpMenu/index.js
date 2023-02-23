@@ -30,6 +30,17 @@ const HelpMenu = ({
   const handleOpen = () => setIsOpen((state) => !state);
 
   useEffect(() => {
+    const appHeight = () => {
+      document.documentElement.style.setProperty(
+        '--app-height',
+        `${window.innerHeight}px`
+      );
+    };
+
+    window.addEventListener('resize', appHeight);
+  }, []);
+
+  useEffect(() => {
     const handler = (e) => {
       if (
         !document.querySelector('.help').contains(e.target) &&

@@ -74,7 +74,6 @@
     flex-direction: column;
     opacity: initial;
     transform: translateX(100%);
-    min-height: -webkit-fill-available;
 
     &_open {
       transform: translateX(0);
