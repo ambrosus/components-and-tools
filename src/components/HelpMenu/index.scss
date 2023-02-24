@@ -107,7 +107,6 @@
     width: 100%;
     border-radius: 8px;
     margin-bottom: 24px;
-    overflow: hidden;
 
     @media screen and (max-width: 600px) {
       height: 250px;
@@ -132,6 +131,7 @@
     height: 100%;
     width: 100%;
     object-fit: cover;
+    border-radius: 8px;
   }
 
   .help__academy {
