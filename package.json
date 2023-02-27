@@ -1,13 +1,13 @@
 {
   "name": "airdao-components-and-tools",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "private": false,
   "description": "Components, hooks and utils library for airdao web apps",
   "main": "./dist/index.js",
   "author": "kishkoigor",
   "license": "MIT",
   "scripts": {
-    "start:lib": "webpack-dev-server --config ./webpack.config.js",
+    "start:lib": "webpack --config ./webpack.config.js --watch",
     "start:app": "webpack-dev-server --config ./development/webpack.config.js",
     "build": "webpack"
   },
