@@ -241,7 +241,7 @@
   bottom: 24px;
   right: 24px;
   z-index: 100;
-  background: #3568DD;
+  background-color: #3568DD;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -276,5 +276,34 @@
     path {
       fill: #3568DD;
     }
+  }
+
+  .handle-help-btn__fade {
+    content: '';
+    position: absolute;
+    width: 500px;
+    height: 500px;
+    background: #fff;
+  }
+}
+
+.handle-help-fade {
+  width: 500px;
+  height: 500px;
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 99;
+  filter: blur(119.5px);
+  pointer-events: none;
+  opacity: 0;
+  transition: .2s;
+
+  &_active {
+    opacity: 1;
+  }
+
+  @media screen and (max-width: 600px) {
+    display: none;
   }
 }

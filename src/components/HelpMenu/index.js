@@ -3,6 +3,7 @@ import helpMenuPropTypes from './HelpMenu.propTypes';
 import './index.scss';
 import close from './assets/close-help.svg';
 import play from './assets/play.svg';
+import fade from './assets/fade.svg';
 import { ReactComponent as Question } from './assets/question.svg';
 
 /*
@@ -122,6 +123,13 @@ const HelpMenu = ({
             {appDetails.lastUpdated}
           </p>
         )}
+      </div>
+      <div
+        className={`handle-help-fade ${
+          isOpen ? 'handle-help-fade_active' : ''
+        }`}
+      >
+        <img src={fade} alt='help fade' />
       </div>
       <button
         type='button'
