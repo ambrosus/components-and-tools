@@ -78,7 +78,9 @@ const HelpMenu = ({
                 src={video.thumbnailSrc}
                 alt={'#'}
               />
-              <img className='help__play' src={play} alt='play button' />
+              <div className='help__play'>
+                <img src={play} alt='play button' />
+              </div>
             </a>
           </div>
         )}
