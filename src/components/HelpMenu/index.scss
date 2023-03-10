@@ -93,12 +93,11 @@
   }
 
   .help__description {
-    font-size: 12px;
+    font-size: 16px;
     line-height: 14.5px;
     margin-bottom: 16px;
 
     @media screen and (max-width: 600px) {
-      font-size: 16px;
       line-height: 20px;
     }
   }
@@ -136,11 +135,7 @@
   }
 
   .help__academy {
-    font-size: 12px;
-
-    @media screen and (max-width: 600px) {
-      font-size: 16px;
-    }
+    font-size: 16px;
   }
 
   .help__link {
