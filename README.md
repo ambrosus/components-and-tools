@@ -144,23 +144,10 @@ const App = () => (
 |:-----|:-----------| :------ |
 | title **[required]**  |  | Title of the menu which apears at the top of the menu |
 | description **[required]**  |  | Description is required and must be a string with length <= 150
-| guideLink **[required]**  |  |  This field is required and shoud be an object with fields: ```{
-  url: PropTypes.string,
-  text: PropTypes.string,
-}```
-| video   | ```undefined```  | Object with fields: ```{
-  links: PropTypes.string,
-  url: PropTypes.string,
-}```
+| guideLink **[required]**  |  |  This field is required and shoud be an object with fields: ```{ url: PropTypes.string, text: PropTypes.string }```
+| video   | ```undefined```  | Object with fields: ```{ links: PropTypes.string, url: PropTypes.string }```
 | links   | ```undefined```  | Main navigation for menu, links must be an array of objects with properties url and text with length <= 5
-| socials   | ```undefined```  | Social links block: ```{
-    url: PropTypes.string,
-    iconSrc: PropTypes.string,
-  }```
-| links   | ```undefined```  | Info which apears at the bottom of the menu: ```{
-  name: PropTypes.string,
-  version: PropTypes.string,
-  lastUpdated: PropTypes.string,
-}```
+| socials   | ```undefined```  | Social links block: ```{ url: PropTypes.string, iconSrc: PropTypes.string }```
+| links   | ```undefined```  | Info which apears at the bottom of the menu: ```{ name: PropTypes.string, version: PropTypes.string, lastUpdated:PropTypes.string }```
 
 
