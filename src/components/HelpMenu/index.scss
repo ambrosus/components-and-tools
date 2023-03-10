@@ -94,8 +94,8 @@
 
   .help__description {
     font-size: 16px;
-    line-height: 14.5px;
     margin-bottom: 16px;
+    line-height: 20;
 
     @media screen and (max-width: 600px) {
       line-height: 20px;
@@ -136,6 +136,7 @@
 
   .help__academy {
     font-size: 16px;
+    line-height: 20;
   }
 
   .help__link {
