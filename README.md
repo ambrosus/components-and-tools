@@ -121,3 +121,46 @@ const SomeConnectPage = () => {
 | web3ReactInstance **[required]**  |  | Context from [useWeb3React()](https://github.com/Uniswap/web3-react/tree/v6/docs#useweb3react) hook |
 | configuredInjectedConnector   | ```defaultInjectedConnector``` from [web3ReactConnectors.js](utils/web3ReactConnectors.js)  | [@web3-react/injected-connector](https://github.com/Uniswap/web3-react/blob/v6/docs/connectors/injected.md) configured for Ambrosus network
 | configuredWalletConnectConnector   | ```defaultWalletConnectConnector``` from [web3ReactConnectors.js](utils/web3ReactConnectors.js)  | [@web3-react/walletconnect-connector](https://github.com/Uniswap/web3-react/blob/v6/docs/connectors/walletconnect.md) configured for Ambrosus network
+
+
+### HelpMenu
+```jsx
+import { HelpMenu } from 'airdao-components-and-tools/components';
+
+const App = () => (
+  <>
+    <Menu 
+      web3ReactInstance={web3ReactInstance}
+      initHidden={false}
+      customLogo={<Logo />}
+      configuredInjectedConnector={connector}
+      configuredWalletConnectConnector={connector}
+    />
+    ...
+  </>
+)}
+```
+| Property name |  Default |  Description |
+|:-----|:-----------| :------ |
+| title **[required]**  |  | Title of the menu which apears at the top of the menu |
+| description **[required]**  |  | Description is required and must be a string with length <= 150
+| guideLink **[required]**  |  |  This field is required and shoud be an object with fields: ```{
+  url: PropTypes.string,
+  text: PropTypes.string,
+}```
+| video   | ```undefined```  | Object with fields: ```{
+  links: PropTypes.string,
+  url: PropTypes.string,
+}```
+| links   | ```undefined```  | Main navigation for menu, links must be an array of objects with properties url and text with length <= 5
+| socials   | ```undefined```  | Social links block: ```{
+    url: PropTypes.string,
+    iconSrc: PropTypes.string,
+  }```
+| links   | ```undefined```  | Info which apears at the bottom of the menu: ```{
+  name: PropTypes.string,
+  version: PropTypes.string,
+  lastUpdated: PropTypes.string,
+}```
+
+
