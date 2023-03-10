@@ -127,14 +127,65 @@ const SomeConnectPage = () => {
 ```jsx
 import { HelpMenu } from 'airdao-components-and-tools/components';
 
+const helpContent = {
+  title: 'AirDAO Bridge',
+  description:
+    'The AirDAO Bridge enables you to transfer crypto tokens between the AirDAO blockchain, Ethereum blockchain (ETH), and BNB Smart Chain (BSC).',
+  video: {
+    url: 'https://www.youtube.com/watch?v=PEa6J18GvSo&t=167s&ab_channel=AirDAO%E2%80%94builtonAMB-NET',
+    thumbnailSrc: thumbnail,
+  },
+  guideLink: {
+    text: 'Go to AirDAO Academy →',
+    url: 'https://airdao.academy/guides/bridge',
+  },
+  links: [
+    {
+      text: 'Help Center',
+      url: 'https://airdao.academy/',
+    },
+    {
+      text: 'Whats New',
+      url: 'https://airdao.academy/change-log',
+    },
+    {
+      text: 'Place Feedback & Report Bugs',
+      url: 'https://forms.gle/vRqhvT5pLAFic7Z77',
+    },
+    {
+      text: 'Github',
+      url: 'https://github.com/ambrosus/',
+    },
+  ],
+  socials: [
+    {
+      url: 'https://twitter.com/airdao_io',
+      iconSrc: twitterIcon,
+    },
+    {
+      url: 'https://t.me/airDAO_official',
+      iconSrc: telegramIcon,
+    },
+    {
+      url: 'https://www.reddit.com/r/AirDAO/',
+      iconSrc: redditIcon,
+    },
+    {
+      url: 'https://blog.airdao.io/',
+      iconSrc: mediumIcon,
+    },
+  ],
+};
+
 const App = () => (
   <>
-    <Menu 
-      web3ReactInstance={web3ReactInstance}
-      initHidden={false}
-      customLogo={<Logo />}
-      configuredInjectedConnector={connector}
-      configuredWalletConnectConnector={connector}
+    <HelpMenu 
+      {...helpContent}
+      appDetails={{
+        name: packageJson.name,
+        version: packageJson.version,
+        lastUpdated: '1 day ago',
+      }}
     />
     ...
   </>
@@ -148,6 +199,4 @@ const App = () => (
 | video   | ```undefined```  | Object with fields: ```{ links: PropTypes.string, url: PropTypes.string }```
 | links   | ```undefined```  | Main navigation for menu, links must be an array of objects with properties url and text with length <= 5
 | socials   | ```undefined```  | Social links block: ```{ url: PropTypes.string, iconSrc: PropTypes.string }```
-| links   | ```undefined```  | Info which apears at the bottom of the menu: ```{ name: PropTypes.string, version: PropTypes.string, lastUpdated:PropTypes.string }```
-
-
+| appDetails   | ```undefined```  | Info which apears at the bottom of the menu: ```{ name: PropTypes.string, version: PropTypes.string, lastUpdated:PropTypes.string }```
