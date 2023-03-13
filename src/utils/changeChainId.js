@@ -8,8 +8,9 @@ const changeChainId = async (provider, selectedNetwork) => {
       method: 'wallet_switchEthereumChain',
       params: [{ chainId: hexChainId }],
     });
-  } catch (switchError) {
-    console.log(switchError);
+  } catch (error) {
+    // EIP-1193 userRejectedRequest error
+    if (error.code === 4001) return;
     await provider.request({
       method: 'wallet_addEthereumChain',
       params: [
