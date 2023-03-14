@@ -4,7 +4,7 @@ export const getCurrentAmbNetwork = (
 
 export const allAmbNetworksConfig = {
   30746: {
-    name: 'Ambrosus Devnet',
+    name: 'AirDAO Devnet',
     chainId: 30746,
     code: 'AMB',
     tokenSymbol: 'AMB',
@@ -14,7 +14,7 @@ export const allAmbNetworksConfig = {
     rpcUrlWS: 'wss://network.ambrosus-dev.io/ws',
   },
   22040: {
-    name: 'Ambrosus Testnet',
+    name: 'AirDAO Testnet',
     chainId: 22040,
     code: 'AMB',
     tokenSymbol: 'AMB',
@@ -24,7 +24,7 @@ export const allAmbNetworksConfig = {
     rpcUrlWS: 'wss://network.ambrosus-test.io/ws',
   },
   16718: {
-    name: 'Ambrosus Mainnet',
+    name: 'AirDAO Mainnet',
     chainId: 16718,
     code: 'AMB',
     tokenSymbol: 'AMB',
