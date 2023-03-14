@@ -1,12 +1,9 @@
 import React from 'react';
-import ChevronIcon from '../assets/chevron.svg';
+import { ReactComponent as ChevronIcon } from '../assets/chevron.svg';
 
 const ConnectWalletButtonLayout = ({ onClick, name, description, logo }) => (
   <button onClick={onClick} className={'modal-button'} id={name}>
-    {React.createElement(logo, {
-      alt: 'metamask logo',
-      className: 'modal-button__logo',
-    })}
+    <img alt='metamask logo' className='modal-button__logo' src={logo} />
     <div className='modal-button__text-container'>
       <h3 className='modal-button__heading'>{name}</h3>
       <p className='modal-button__text'>{description}</p>
