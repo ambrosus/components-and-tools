@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import {useEffect, useMemo, useState} from 'react';
 import { usePrismicPageData } from '../usePrismicPageData';
 import { Logo } from '../assets/Logo';
 import { Close } from '../assets/Close';
@@ -19,6 +19,11 @@ const MenuBody = ({
   isWrongNetwork,
   connector,
 }) => {
+  const window = useMemo(() => {
+    if (typeof window !== 'undefined') {
+      return window;
+    }
+  }, []);
   const [isOpen, setIsOpen] = useState(
     initHidden ? false : window.innerWidth > 1050
   );
@@ -27,22 +32,17 @@ const MenuBody = ({
 
   useEffect(() => {
     const handleResize = () => {
-      if (typeof window !== 'undefined') {
         if (window.innerWidth > 430) {
           setIsOpen(initHidden ? false : window.innerWidth > 1050);
           setOverlayVisible(false);
         }
-      }
-
     };
     window.addEventListener('resize', handleResize, true);
   }, []);
 
   useEffect(() => {
-    if (typeof window !== 'undefined') {
-      if (window.innerWidth < 1050) {
-        document.body.style.overflow = isOpen ? 'hidden' : 'auto';
-      }
+    if (window.innerWidth < 1050) {
+      document.body.style.overflow = isOpen ? 'hidden' : 'auto';
     }
   }, [isOpen]);
 
