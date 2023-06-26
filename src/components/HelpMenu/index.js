@@ -26,7 +26,7 @@ const HelpMenu = ({
   socials,
   appDetails,
 }) => {
-  const window = useMemo(() => {
+  const _window = useMemo(() => {
     if (typeof window !== 'undefined') {
       return window;
     }
@@ -38,18 +38,13 @@ const HelpMenu = ({
 
   useEffect(() => {
     const appHeight = () => {
-
-      if (typeof window !== 'undefined') {
-        return window;
-      }
-
       document.documentElement.style.setProperty(
         '--app-height',
-        `${window.innerHeight}px`
+        `${_window.innerHeight}px`
       );
     };
 
-    window.addEventListener('resize', appHeight);
+    _window.addEventListener('resize', appHeight);
     appHeight();
   }, []);
 
@@ -66,10 +61,10 @@ const HelpMenu = ({
     };
 
     if (isOpen) {
-      window.addEventListener('mousedown', handler);
+      _window.addEventListener('mousedown', handler);
     }
     return () => {
-      window.removeEventListener('mousedown', handler);
+      _window.removeEventListener('mousedown', handler);
     };
   }, [isOpen]);
 

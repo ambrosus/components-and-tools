@@ -11,23 +11,23 @@ const useAuthorization = (
 ) => {
   const { activate, deactivate } = web3ReactInstance;
 
-  const window = useMemo(() => {
+  const _window = useMemo(() => {
     if (typeof window !== 'undefined') {
       return window;
     }
   }, []);
 
   const loginMetamask = () => {
-    const { ethereum } = window;
+    const { ethereum } = _window;
     if (ethereum && ethereum.isMetaMask) {
       activate(configuredInjectedConnector).then(() => {
         localStorage.setItem('wallet', 'metamask');
       });
     } else {
-      window
+      _window
           .open(
               `https://metamask.app.link/dapp/${
-                  window.location.hostname + window.location.pathname
+                  _window.location.hostname + _window.location.pathname
               }`
           )
           .focus();

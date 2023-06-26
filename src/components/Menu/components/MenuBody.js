@@ -19,39 +19,39 @@ const MenuBody = ({
   isWrongNetwork,
   connector,
 }) => {
-  const window = useMemo(() => {
+  const _window = useMemo(() => {
     if (typeof window !== 'undefined') {
       return window;
     }
   }, []);
   const [isOpen, setIsOpen] = useState(
-    initHidden ? false : window.innerWidth > 1050
+    initHidden ? false : _window.innerWidth > 1050
   );
 
   const [overlayVisible, setOverlayVisible] = useState(false);
 
   useEffect(() => {
     const handleResize = () => {
-        if (window.innerWidth > 430) {
-          setIsOpen(initHidden ? false : window.innerWidth > 1050);
+        if (_window.innerWidth > 430) {
+          setIsOpen(initHidden ? false : _window.innerWidth > 1050);
           setOverlayVisible(false);
         }
     };
-    window.addEventListener('resize', handleResize, true);
+    _window.addEventListener('resize', handleResize, true);
   }, []);
 
   useEffect(() => {
-    if (window.innerWidth < 1050) {
+    if (_window.innerWidth < 1050) {
       document.body.style.overflow = isOpen ? 'hidden' : 'auto';
     }
   }, [isOpen]);
 
   const handleOpen = () => {
-    setOverlayVisible(!isOpen && window.innerWidth < 1050);
+    setOverlayVisible(!isOpen && _window.innerWidth < 1050);
     setIsOpen((state) => !state);
   };
 
-  const { href } = window.location;
+  const { href } = _window.location;
   let currentApp = '';
 
   if (href.includes('staking')) {

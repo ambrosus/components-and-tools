@@ -10,13 +10,13 @@ const useAutoLogin = (
 
   useEffect(() => {
     (async () => {
-      let window;
+      let _window;
 
       if (typeof window !== 'undefined') {
-        return window;
+        _window = window;
       }
 
-      const { ethereum } = window;
+      const { ethereum } = _window;
       // eslint-disable-next-line no-underscore-dangle
       const isUnlocked = await (ethereum &&
         ethereum._metamask &&
