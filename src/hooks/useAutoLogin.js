@@ -10,6 +10,12 @@ const useAutoLogin = (
 
   useEffect(() => {
     (async () => {
+      let window;
+
+      if (typeof window !== 'undefined') {
+        return window;
+      }
+
       const { ethereum } = window;
       // eslint-disable-next-line no-underscore-dangle
       const isUnlocked = await (ethereum &&

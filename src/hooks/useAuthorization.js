@@ -2,6 +2,7 @@ import {
   defaultInjectedConnector,
   defaultWalletConnectConnector,
 } from '../utils';
+import {useMemo} from "react";
 
 const useAuthorization = (
     web3ReactInstance,
@@ -9,6 +10,12 @@ const useAuthorization = (
     configuredWalletConnectConnector = defaultWalletConnectConnector
 ) => {
   const { activate, deactivate } = web3ReactInstance;
+
+  const window = useMemo(() => {
+    if (typeof window !== 'undefined') {
+      return window;
+    }
+  }, []);
 
   const loginMetamask = () => {
     const { ethereum } = window;

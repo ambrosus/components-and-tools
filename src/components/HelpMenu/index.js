@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import {useEffect, useMemo, useState} from 'react';
 import helpMenuPropTypes from './HelpMenu.propTypes';
 import './index.scss';
 import close from './assets/close-help.svg';
@@ -26,12 +26,23 @@ const HelpMenu = ({
   socials,
   appDetails,
 }) => {
+  const window = useMemo(() => {
+    if (typeof window !== 'undefined') {
+      return window;
+    }
+  }, []);
+
   const [isOpen, setIsOpen] = useState(false);
 
   const handleOpen = () => setIsOpen((state) => !state);
 
   useEffect(() => {
     const appHeight = () => {
+
+      if (typeof window !== 'undefined') {
+        return window;
+      }
+
       document.documentElement.style.setProperty(
         '--app-height',
         `${window.innerHeight}px`
