@@ -11,7 +11,7 @@ const Main = () => {
   return (
     <>
       <Menu web3ReactInstance={web3ReactInstance} />
-      <section>{JSON.stringify(web3ReactInstance, null, 2)}</section>
+      {/*<section>{JSON.stringify(web3ReactInstance, null, 2)}</section>*/}
       <HelpMenuWithContent />
     </>
   );

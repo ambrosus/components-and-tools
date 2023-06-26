@@ -7,6 +7,7 @@ import AddressBlock from './AddressBlock';
 import { Wallet } from '../assets/Wallet';
 import { LearnMoreBtn } from '../assets/LearnMoreBtn';
 import Submenu from './Submenu';
+import switchToAmb from '../../../utils/switchToAmb';
 
 const MenuBody = ({
   address,
@@ -15,6 +16,8 @@ const MenuBody = ({
   connectorType,
   initHidden,
   customLogo,
+  isWrongNetwork,
+  connector,
 }) => {
   const [isOpen, setIsOpen] = useState(
     initHidden ? false : window.innerWidth > 1050
@@ -61,6 +64,53 @@ const MenuBody = ({
     currentApp = 'bridge';
   }
 
+  const switchNetwork = async () => {
+    if (!connector) return;
+    const provider = await connector.getProvider();
+    return switchToAmb(provider);
+  };
+
+  function showNetworkButton() {
+    if (address) {
+      return <AddressBlock {...{ address, logout, connectorType }} />;
+    }
+    if (isWrongNetwork) {
+      return (
+        <>
+          <button
+            id='connect-wallet'
+            type='button'
+            className='side-menu__connect-wallet'
+            onClick={switchNetwork}
+          >
+            Switch to AMB-NET
+          </button>
+
+          <div className='side-menu__connect-text'>
+            Your AirDAO experience will be limited without connecting
+          </div>
+        </>
+      );
+    }
+    return (
+      <>
+        <button
+          id='connect-wallet'
+          type='button'
+          className='side-menu__connect-wallet'
+          onClick={login}
+        >
+          <Wallet />
+          Connect wallet
+        </button>
+
+        <div className='side-menu__connect-text'>
+          Your AirDAO experience will be limited without connecting
+        </div>
+      </>
+    );
+  }
+
   const data = usePrismicPageData('menu');
   return (
     <>
@@ -88,25 +138,7 @@ const MenuBody = ({
           {isOpen && (
             <>
               <div className='side-menu__content'>
-                {address ? (
-                  <AddressBlock {...{ address, logout, connectorType }} />
-                ) : (
-                  <>
-                    <button
-                      id='connect-wallet'
-                      type='button'
-                      className='side-menu__connect-wallet'
-                      onClick={login}
-                    >
-                      <Wallet />
-                      Connect wallet
-                    </button>
-
-                    <div className='side-menu__connect-text'>
-                      Your AirDAO experience will be limited without connecting
-                    </div>
-                  </>
-                )}
+                {showNetworkButton()}
                 <div className='side-menu__nav-wrapper'>
                   <div className='side-menu__content-list'>
                     <ul className='side-menu__list'>

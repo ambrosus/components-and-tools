@@ -1,14 +1,11 @@
 import { useEffect, useState } from 'react';
-import { UnsupportedChainIdError } from '@web3-react/core';
 import { defaultInjectedConnector } from '../utils';
-import changeChainId from '../utils/changeChainId';
-import { getCurrentAmbNetwork } from '../utils';
 
 const useAutoLogin = (
   web3ReactInstance,
   configuredInjectedConnector = defaultInjectedConnector
 ) => {
-  const { activate, error, connector } = web3ReactInstance;
+  const { activate } = web3ReactInstance;
   const [isLoaded, setIsLoaded] = useState(false);
 
   useEffect(() => {
@@ -28,18 +25,6 @@ const useAutoLogin = (
       }
     })();
   }, []);
-
-  useEffect(() => {
-    (async () => {
-      if (error instanceof UnsupportedChainIdError) {
-        if (!document.hidden) {
-          const provider = await connector.getProvider();
-          const ambNetwork = getCurrentAmbNetwork();
-          changeChainId(provider, ambNetwork);
-        }
-      }
-    })();
-  }, [error]);
 
   return isLoaded;
 };
