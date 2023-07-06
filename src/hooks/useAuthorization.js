@@ -5,6 +5,8 @@ import {
 // import switchToAmb from '../utils/switchToAmb';
 import { useWeb3React } from '@web3-react/core';
 
+const { REACT_APP_CHAIN_ID: chainId } = process.env;
+
 const useAuthorization = (
   metamaskConnector = defaultMetamaskConnector,
   walletconnectConnector = defaultWalletconnectConnector
@@ -18,7 +20,7 @@ const useAuthorization = (
     //   });
     // }
 
-    metamaskConnector.activate(22040).then(() => {});
+    metamaskConnector.activate(+chainId).then(() => {});
 
     // const { ethereum } = window;
     // if (ethereum && ethereum.isMetaMask) {
@@ -37,9 +39,8 @@ const useAuthorization = (
   };
 
   const loginWalletConnect = () => {
-    console.log(walletconnectConnector);
     walletconnectConnector
-      .activate(22040)
+      .activate(+chainId)
       .then((res) => {
         console.log('res', res);
         localStorage.setItem('wallet', 'walletconnect');
