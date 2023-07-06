@@ -45,9 +45,8 @@ module.exports = {
     react: 'react',
     React: 'react',
     process: 'process',
-    '@web3-react/injected-connector': '@web3-react/injected-connector',
-    '@web3-react/walletconnect-connector':
-      '@web3-react/walletconnect-connector',
+    '@web3-react/metamask': '@web3-react/metamask',
+    '@web3-react/walletconnect-v2': '@web3-react/walletconnect-v2',
     '@web3-react/core': '@web3-react/core',
     buffer: 'buffer',
     Buffer: 'buffer',

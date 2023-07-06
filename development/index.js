@@ -1,13 +1,22 @@
 import * as ReactDOM from 'react-dom';
 import React from 'react';
 import { Web3ReactProvider } from '@web3-react/core';
-import { providers } from 'ethers';
 import Main from './Main';
 
-const getLibrary = (provider = null) => new providers.Web3Provider(provider);
+import {
+  metamaskConnector,
+  metamaskHooks,
+  walletconnectConnector,
+  walletconnectHooks,
+} from '../dist/utils';
+
+const connectors = [
+  [metamaskConnector, metamaskHooks],
+  [walletconnectConnector, walletconnectHooks],
+];
 
 const App = () => (
-  <Web3ReactProvider getLibrary={getLibrary}>
+  <Web3ReactProvider connectors={connectors}>
     <Main />
   </Web3ReactProvider>
 );
