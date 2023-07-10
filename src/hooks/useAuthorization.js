@@ -39,11 +39,11 @@ const useAuthorization = (
   };
 
   const loginWalletConnect = () => {
+    localStorage.clear();
     walletconnectConnector
       .activate(+chainId)
       .then((res) => {
         console.log('res', res);
-        localStorage.setItem('wallet', 'walletconnect');
       })
       .catch((err) => {
         console.log('err', err);
