@@ -18,6 +18,7 @@ const Menu = ({
   customLogo,
   metamaskConnector = defaultMetamaskConnector,
   walletconnectConnector = defaultWalletconnectConnector,
+  supportedChains = [+process.env.REACT_APP_CHAIN_ID],
 }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const toggleModal = () => setIsModalOpen((prev) => !prev);
@@ -34,7 +35,7 @@ const Menu = ({
   }, [connector]);
 
   const isWrongNetwork = useMemo(
-    () => isActive && chainId !== +process.env.REACT_APP_CHAIN_ID,
+    () => isActive && !supportedChains.includes(chainId),
     [chainId, isActive]
   );
 
