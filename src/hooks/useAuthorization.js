@@ -20,7 +20,12 @@ const useAuthorization = (
     //   });
     // }
 
-    metamaskConnector.activate(+chainId).then(() => {});
+    metamaskConnector
+      .activate(+chainId)
+      .then(() => {
+        localStorage.setItem('wallet', 'metamask');
+      })
+      .catch((e) => console.log('metamask connection error', e));
 
     // const { ethereum } = window;
     // if (ethereum && ethereum.isMetaMask) {
@@ -39,19 +44,19 @@ const useAuthorization = (
   };
 
   const loginWalletConnect = () => {
+    //TODO: fix this
+    const hideVideoStaking = localStorage.getItem('hideVideoStaking');
+    const hideVideoBridge = localStorage.getItem('hideVideoBridge');
     localStorage.clear();
-    walletconnectConnector
-      .activate(+chainId)
-      .then((res) => {
-        console.log('res', res);
-      })
-      .catch((err) => {
-        console.log('err', err);
-      });
+    localStorage.setItem('hideVideoStaking', hideVideoStaking);
+    localStorage.setItem('hideVideoBridge', hideVideoBridge);
+
+    walletconnectConnector.activate(+chainId).catch((err) => {
+      console.log('walletconnect-v2 connection error', err);
+    });
   };
 
   const logout = () => {
-    localStorage.removeItem('wallet');
     if (connector?.deactivate) {
       void connector.deactivate();
     } else {
