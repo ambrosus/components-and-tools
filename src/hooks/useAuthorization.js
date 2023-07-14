@@ -14,33 +14,23 @@ const useAuthorization = (
   const { connector } = useWeb3React();
 
   const loginMetamask = () => {
-    // if (error instanceof UnsupportedChainIdError) {
-    //   return library.getProvider().then((provider) => {
-    //     switchToAmb(provider);
-    //   });
-    // }
-
-    metamaskConnector
-      .activate(+chainId)
-      .then(() => {
-        localStorage.setItem('wallet', 'metamask');
-      })
-      .catch((e) => console.log('metamask connection error', e));
-
-    // const { ethereum } = window;
-    // if (ethereum && ethereum.isMetaMask) {
-    //   metamaskConnector.activate().then(() => {
-    //     localStorage.setItem('wallet', 'metamask');
-    //   });
-    // } else {
-    //   window
-    //     .open(
-    //       `https://metamask.app.link/dapp/${
-    //         window.location.hostname + window.location.pathname
-    //       }`
-    //     )
-    //     .focus();
-    // }
+    const { ethereum } = window;
+    if (ethereum && ethereum.isMetaMask) {
+      return metamaskConnector
+        .activate(+chainId)
+        .then(() => {
+          localStorage.setItem('wallet', 'metamask');
+        })
+        .catch((e) => console.log('metamask connection error', e));
+    } else {
+      return window
+        .open(
+          `https://metamask.app.link/dapp/${
+            window.location.hostname + window.location.pathname
+          }`
+        )
+        .focus();
+    }
   };
 
   const loginWalletConnect = () => {
@@ -51,7 +41,7 @@ const useAuthorization = (
     localStorage.setItem('hideVideoStaking', hideVideoStaking);
     localStorage.setItem('hideVideoBridge', hideVideoBridge);
 
-    walletconnectConnector.activate(+chainId).catch((err) => {
+    return walletconnectConnector.activate(+chainId).catch((err) => {
       console.log('walletconnect-v2 connection error', err);
     });
   };
