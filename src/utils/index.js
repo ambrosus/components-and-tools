@@ -7,6 +7,7 @@ import {
 import changeChainId from './changeChainId';
 import { allAmbNetworksConfig, getCurrentAmbNetwork } from './networksConfig';
 import getBranchLastUpdatedString from './getBranchLastUpdatedString';
+import switchToAmb from './switchToAmb';
 
 export {
   metamaskConnector,
@@ -17,4 +18,5 @@ export {
   allAmbNetworksConfig,
   getCurrentAmbNetwork,
   getBranchLastUpdatedString,
+  switchToAmb,
 };
