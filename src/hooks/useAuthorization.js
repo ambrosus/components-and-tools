@@ -34,12 +34,14 @@ const useAuthorization = (
   };
 
   const loginWalletConnect = () => {
-    //TODO: fix this
-    const hideVideoStaking = localStorage.getItem('hideVideoStaking');
-    const hideVideoBridge = localStorage.getItem('hideVideoBridge');
+    // clear all localstorage entries related to walletconnect
+    const currLocalStorage = { ...localStorage };
     localStorage.clear();
-    localStorage.setItem('hideVideoStaking', hideVideoStaking);
-    localStorage.setItem('hideVideoBridge', hideVideoBridge);
+    for (const key in currLocalStorage) {
+      if (!key.includes('wc@2')) {
+        localStorage.setItem(key, currLocalStorage[key]);
+      }
+    }
 
     return walletconnectConnector.activate(+chainId).catch((err) => {
       console.log('walletconnect-v2 connection error', err);
@@ -52,6 +54,7 @@ const useAuthorization = (
     } else {
       void connector.resetState();
     }
+    localStorage.removeItem('wallet');
   };
 
   return {
