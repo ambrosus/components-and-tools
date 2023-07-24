@@ -1,8 +1,8 @@
 import {
+  addAmbNetwork,
   metamaskConnector as defaultMetamaskConnector,
   walletconnectConnector as defaultWalletconnectConnector,
 } from '../utils';
-// import switchToAmb from '../utils/switchToAmb';
 import { useWeb3React } from '@web3-react/core';
 
 const { REACT_APP_CHAIN_ID: chainId } = process.env;
@@ -21,7 +21,12 @@ const useAuthorization = (
         .then(() => {
           localStorage.setItem('wallet', 'metamask');
         })
-        .catch((e) => console.log('metamask connection error', e));
+        .catch((e) => {
+          if (e.code === 4902) {
+            addAmbNetwork(ethereum);
+          }
+          console.log('metamask connection error', e);
+        });
     } else {
       return window
         .open(
