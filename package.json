@@ -1,6 +1,6 @@
 {
   "name": "airdao-components-and-tools",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "private": false,
   "description": "Components, hooks and utils library for airdao web apps",
   "main": "./dist/index.js",
@@ -14,12 +14,12 @@
   "dependencies": {
     "@prismicio/client": "^6.7.1",
     "@prismicio/react": "^2.5.0",
-    "@web3-react/metamask": "^8.2.1",
-    "@web3-react/walletconnect-v2": "^8.3.7",
+    "@web3-react/metamask": "^8.2.3",
+    "@web3-react/walletconnect-v2": "^8.5.0",
     "buffer": "^6.0.3"
   },
   "peerDependencies": {
-    "@web3-react/core": "^8.2.0",
+    "@web3-react/core": "^8.2.2",
     "ethers": "^5.3.0",
     "react": ">=17.0.2",
     "react-dom": ">=17.0.2"
