@@ -6,46 +6,38 @@ import MenuBody from './components/MenuBody';
 import WalletModal from '../WalletModal';
 import { useAuthorization } from '../../hooks';
 import {
-  defaultInjectedConnector,
-  defaultWalletConnectConnector,
+  metamaskConnector as defaultMetamaskConnector,
+  walletconnectConnector as defaultWalletconnectConnector,
 } from '../../utils';
-import { InjectedConnector } from '@web3-react/injected-connector';
-import { WalletConnectConnector } from '@web3-react/walletconnect-connector';
-import { UnsupportedChainIdError } from '@web3-react/core';
+import { MetaMask } from '@web3-react/metamask';
+import { WalletConnect } from '@web3-react/walletconnect-v2';
+import { useWeb3React } from '@web3-react/core';
 
 const Menu = ({
-  web3ReactInstance,
   initHidden,
   customLogo,
-  configuredInjectedConnector = defaultInjectedConnector,
-  configuredWalletConnectConnector = defaultWalletConnectConnector,
+  metamaskConnector = defaultMetamaskConnector,
+  walletconnectConnector = defaultWalletconnectConnector,
+  supportedChains = [+process.env.REACT_APP_CHAIN_ID],
 }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const toggleModal = () => setIsModalOpen((prev) => !prev);
-  const { account, connector, error, library } = web3ReactInstance;
+  const { account, connector, chainId, isActive, provider } = useWeb3React();
   const { loginMetamask, loginWalletConnect, logout } = useAuthorization(
-    web3ReactInstance,
-    configuredInjectedConnector,
-    configuredWalletConnectConnector
+    metamaskConnector,
+    walletconnectConnector
   );
 
   const connectorType = useMemo(() => {
-    if (
-      connector === configuredInjectedConnector ||
-      connector instanceof InjectedConnector
-    )
-      return 'injected';
-    if (
-      connector === configuredWalletConnectConnector ||
-      connector instanceof WalletConnectConnector
-    )
-      return 'wallet-connect';
+    if (connector instanceof MetaMask) return 'metamask';
+    if (connector instanceof WalletConnect) return 'walletconnect';
     return undefined;
   }, [connector]);
 
-  const isWrongNetwork = useMemo(() => {
-    return error instanceof UnsupportedChainIdError;
-  }, [error]);
+  const isWrongNetwork = useMemo(
+    () => isActive && !supportedChains.includes(chainId),
+    [chainId, isActive]
+  );
 
   return (
     <PrismicProvider client={client}>
@@ -65,7 +57,7 @@ const Menu = ({
           initHidden,
           customLogo,
           connectorType,
-          connector,
+          provider,
           isWrongNetwork,
         }}
       />

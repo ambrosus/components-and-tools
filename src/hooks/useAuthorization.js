@@ -1,15 +1,18 @@
 import {
-  defaultInjectedConnector,
-  defaultWalletConnectConnector,
+  addAmbNetwork,
+  metamaskConnector as defaultMetamaskConnector,
+  walletconnectConnector as defaultWalletconnectConnector,
 } from '../utils';
+import { useWeb3React } from '@web3-react/core';
 import {useMemo} from "react";
 
+const { REACT_APP_CHAIN_ID: chainId } = process.env;
+
 const useAuthorization = (
-    web3ReactInstance,
-    configuredInjectedConnector = defaultInjectedConnector,
-    configuredWalletConnectConnector = defaultWalletConnectConnector
+  metamaskConnector = defaultMetamaskConnector,
+  walletconnectConnector = defaultWalletconnectConnector
 ) => {
-  const { activate, deactivate } = web3ReactInstance;
+  const { connector } = useWeb3React();
 
   const _window = useMemo(() => {
     if (typeof window !== 'undefined') {
@@ -20,29 +23,50 @@ const useAuthorization = (
   const loginMetamask = () => {
     const { ethereum } = _window;
     if (ethereum && ethereum.isMetaMask) {
-      activate(configuredInjectedConnector).then(() => {
-        localStorage.setItem('wallet', 'metamask');
-      });
+      return metamaskConnector
+        .activate(+chainId)
+        .then(() => {
+          localStorage.setItem('wallet', 'metamask');
+        })
+        .catch((e) => {
+          if (e.code === 4902) {
+            addAmbNetwork(ethereum);
+          }
+          console.log('metamask connection error', e);
+        });
     } else {
-      _window
-          .open(
-              `https://metamask.app.link/dapp/${
-                  _window.location.hostname + _window.location.pathname
-              }`
-          )
-          .focus();
+      return _window
+        .open(
+            `https://metamask.app.link/dapp/${
+                _window.location.hostname + _window.location.pathname
+            }`
+        )
+        .focus();
     }
   };
 
   const loginWalletConnect = () => {
-    activate(configuredWalletConnectConnector).then(() => {
-      localStorage.setItem('wallet', 'walletconnect');
+    // clear all localstorage entries related to walletconnect
+    const currLocalStorage = { ...localStorage };
+    localStorage.clear();
+    for (const key in currLocalStorage) {
+      if (!key.includes('wc@2')) {
+        localStorage.setItem(key, currLocalStorage[key]);
+      }
+    }
+
+    return walletconnectConnector.activate(+chainId).catch((err) => {
+      console.log('walletconnect-v2 connection error', err);
     });
   };
 
   const logout = () => {
+    if (connector?.deactivate) {
+      void connector.deactivate();
+    } else {
+      void connector.resetState();
+    }
     localStorage.removeItem('wallet');
-    deactivate();
   };
 
   return {

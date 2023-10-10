@@ -1,6 +1,4 @@
-import React, { useMemo, useState } from 'react';
-import { InjectedConnector } from '@web3-react/injected-connector';
-import { WalletConnectConnector } from '@web3-react/walletconnect-connector';
+import React, { useState } from 'react';
 import { Metamask } from '../assets/Metamask';
 import { WalletConnectLogo } from '../assets/WalletConnectLogo';
 import { Logout } from '../assets/Logout';
@@ -23,8 +21,8 @@ const AddressBlock = ({ address = '', logout, connectorType }) => {
   return (
     <div className='address-block'>
       <div className='address-block__wallet-icon'>
-        {connectorType === 'injected' ? <Metamask /> : null}
-        {connectorType === 'wallet-connect' ? <WalletConnectLogo /> : null}
+        {connectorType === 'metamask' ? <Metamask /> : null}
+        {connectorType === 'walletconnect' ? <WalletConnectLogo /> : null}
       </div>
       <span>{`${address.slice(0, 4)}...${address.slice(
         address.length - 4,

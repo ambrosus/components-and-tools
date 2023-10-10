@@ -1,16 +1,24 @@
 import {
-  defaultInjectedConnector,
-  defaultWalletConnectConnector,
+  metamaskConnector,
+  metamaskHooks,
+  walletconnectConnector,
+  walletconnectHooks,
 } from './web3ReactConnectors';
 import changeChainId from './changeChainId';
 import { allAmbNetworksConfig, getCurrentAmbNetwork } from './networksConfig';
 import getBranchLastUpdatedString from './getBranchLastUpdatedString';
+import switchToAmb from './switchToAmb';
+import addAmbNetwork from './addAmbNetwork';
 
 export {
-  defaultWalletConnectConnector,
-  defaultInjectedConnector,
+  metamaskConnector,
+  metamaskHooks,
+  walletconnectConnector,
+  walletconnectHooks,
   changeChainId,
   allAmbNetworksConfig,
   getCurrentAmbNetwork,
   getBranchLastUpdatedString,
+  switchToAmb,
+  addAmbNetwork,
 };

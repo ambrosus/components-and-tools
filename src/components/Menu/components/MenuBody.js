@@ -17,7 +17,7 @@ const MenuBody = ({
   initHidden,
   customLogo,
   isWrongNetwork,
-  connector,
+  provider,
 }) => {
   const _window = useMemo(() => {
     if (typeof window !== 'undefined') {
@@ -65,15 +65,11 @@ const MenuBody = ({
   }
 
   const switchNetwork = async () => {
-    if (!connector) return;
-    const provider = await connector.getProvider();
-    return switchToAmb(provider);
+    if (!provider) return;
+    return switchToAmb(provider.provider);
   };
 
   function showNetworkButton() {
-    if (address) {
-      return <AddressBlock {...{ address, logout, connectorType }} />;
-    }
     if (isWrongNetwork) {
       return (
         <>
@@ -91,6 +87,9 @@ const MenuBody = ({
           </div>
         </>
       );
+    }
+    if (address) {
+      return <AddressBlock {...{ address, logout, connectorType }} />;
     }
     return (
       <>
