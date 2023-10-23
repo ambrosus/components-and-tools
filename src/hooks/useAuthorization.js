@@ -6,7 +6,7 @@ import {
 import { useWeb3React } from '@web3-react/core';
 import {useMemo} from "react";
 
-const { REACT_APP_CHAIN_ID: chainId } = process.env;
+const chainId = process.env.REACT_APP_CHAIN_ID || process.env.NEXT_PUBLIC_CHAIN_ID;
 
 const useAuthorization = (
   metamaskConnector = defaultMetamaskConnector,
