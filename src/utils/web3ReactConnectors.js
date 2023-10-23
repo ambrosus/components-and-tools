@@ -4,7 +4,8 @@ import { WalletConnect as WalletConnectV2 } from '@web3-react/walletconnect-v2';
 import { getCurrentAmbNetwork } from './networksConfig';
 
 const ambNetwork = getCurrentAmbNetwork();
-const projectId = process.env.REACT_APP_WC_PROJECT_ID;
+const projectId =
+  process.env.REACT_APP_WC_PROJECT_ID || process.env.NEXT_PUBLIC_WC_PROJECT_ID;
 
 export const [metamaskConnector, metamaskHooks] = initializeConnector(
   (actions) =>
