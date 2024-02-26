@@ -9,7 +9,7 @@ const useAutoLogin = (metamaskConnector = defaultMetamaskConnector) => {
       const lastAuthorizedWallet = localStorage.getItem('wallet');
 
       if (lastAuthorizedWallet === 'metamask') {
-        metamaskConnector.connectEagerly().catch((e) => {
+        await metamaskConnector.connectEagerly().catch((e) => {
           console.log('metamask eager connection error', e);
         });
       }
