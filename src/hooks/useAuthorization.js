@@ -4,13 +4,15 @@ import {
   walletconnectConnector as defaultWalletconnectConnector,
 } from '../utils';
 import { useWeb3React } from '@web3-react/core';
-import {useMemo} from "react";
+import { useMemo } from 'react';
 
-const chainId = process.env.REACT_APP_CHAIN_ID || process.env.NEXT_PUBLIC_CHAIN_ID;
+const defaultChainId =
+  process.env.REACT_APP_CHAIN_ID || process.env.NEXT_PUBLIC_CHAIN_ID;
 
 const useAuthorization = (
   metamaskConnector = defaultMetamaskConnector,
-  walletconnectConnector = defaultWalletconnectConnector
+  walletconnectConnector = defaultWalletconnectConnector,
+  chainId = defaultChainId
 ) => {
   const { connector } = useWeb3React();
 
@@ -37,23 +39,18 @@ const useAuthorization = (
     } else {
       return _window
         .open(
-            `https://metamask.app.link/dapp/${
-                _window.location.hostname + _window.location.pathname
-            }`
+          `https://metamask.app.link/dapp/${
+            _window.location.hostname + _window.location.pathname
+          }`
         )
         .focus();
     }
   };
 
-  const loginWalletConnect = () => {
-    // clear all localstorage entries related to walletconnect
-    const currLocalStorage = { ...localStorage };
-    localStorage.clear();
-    for (const key in currLocalStorage) {
-      if (!key.includes('wc@2')) {
-        localStorage.setItem(key, currLocalStorage[key]);
-      }
-    }
+  const loginWalletConnect = async () => {
+    // clear indexedDB related to walletconnect
+    await _window.indexedDB.deleteDatabase('WALLET_CONNECT_V2_INDEXED_DB');
+    console.info('initiating walletconnect-v2 connection');
 
     return walletconnectConnector.activate(+chainId).catch((err) => {
       console.log('walletconnect-v2 connection error', err);
