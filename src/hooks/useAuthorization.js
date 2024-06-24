@@ -47,6 +47,27 @@ const useAuthorization = (
     }
   };
 
+  const loginSafepal = () => {
+    const { safepalProvider } = _window;
+    if (safepalProvider) {
+      return metamaskConnector
+        .activate(+chainId)
+        .then(() => {
+          localStorage.setItem('wallet', 'metamask');
+        })
+        .catch((e) => {
+          if (e.code === 4902) {
+            addAmbNetwork(safepalProvider);
+          }
+          console.log('metamask connection error', e);
+        });
+    } else {
+      return _window
+        .open('https://www.safepal.com/download?product=2')
+        .focus();
+    }
+  };
+
   const loginWalletConnect = async () => {
     // clear indexedDB related to walletconnect
     await _window.indexedDB.deleteDatabase('WALLET_CONNECT_V2_INDEXED_DB');
@@ -69,6 +90,7 @@ const useAuthorization = (
   return {
     loginMetamask,
     loginWalletConnect,
+    loginSafepal,
     logout,
   };
 };
