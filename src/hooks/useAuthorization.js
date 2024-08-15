@@ -50,14 +50,14 @@ const useAuthorization = (
   };
 
   const loginBitget = () => {
-    const { bitgetTonWallet } = _window;
-    if (bitgetTonWallet) {
+    const { bitkeep } = _window;
+    if (bitgetWallet) {
       return bitgetWalletConnector
         .activate(+chainId)
         .then(() => localStorage.setItem('wallet', 'bitget'))
         .catch((e) => {
           if (e.code === 4902) {
-            addAmbNetwork(bitgetTonWallet);
+            addAmbNetwork(bitkeep.ethereum);
           }
           console.log('metamask connection error', e);
         });

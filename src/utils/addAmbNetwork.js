@@ -4,6 +4,7 @@ import { utils } from 'ethers';
 export default function addAmbNetwork(provider) {
   const ambNetwork = getCurrentAmbNetwork();
   const hexChainId = utils.hexValue(+ambNetwork.chainId);
+  console.log(provider);
 
   return provider.request({
     method: 'wallet_addEthereumChain',
