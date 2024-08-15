@@ -55,6 +55,12 @@ const useAuthorization = (
       return bitgetWalletConnector
         .activate(+chainId)
         .then(() => localStorage.setItem('wallet', 'bitget'))
+        .catch((e) => {
+          if (e.code === 4902) {
+            addAmbNetwork(bitgetTonWallet);
+          }
+          console.log('metamask connection error', e);
+        });
     } else {
       return _window
         .open(
