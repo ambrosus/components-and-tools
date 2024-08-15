@@ -2,6 +2,7 @@ import { initializeConnector } from '@web3-react/core';
 import { MetaMask } from '@web3-react/metamask';
 import { WalletConnect as WalletConnectV2 } from '@web3-react/walletconnect-v2';
 import { getCurrentAmbNetwork } from './networksConfig';
+import { BitKeep } from '@akkafinance/web3-react-bitkeep';
 
 const ambNetwork = getCurrentAmbNetwork();
 const projectId =
@@ -28,4 +29,7 @@ export const [walletconnectConnector, walletconnectHooks] = initializeConnector(
       },
       defaultChainId: ambNetwork.chainId,
     })
+);
+export const [bitgetWalletConnector, bitgetHooks] = initializeConnector(
+  (actions) => new BitKeep({ actions })
 );

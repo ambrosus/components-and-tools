@@ -2,6 +2,7 @@ import {
   addAmbNetwork,
   metamaskConnector as defaultMetamaskConnector,
   walletconnectConnector as defaultWalletconnectConnector,
+  bitgetWalletConnector as defaultBitgetWalletConnector,
 } from '../utils';
 import { useWeb3React } from '@web3-react/core';
 import { useMemo } from 'react';
@@ -12,6 +13,7 @@ const defaultChainId =
 const useAuthorization = (
   metamaskConnector = defaultMetamaskConnector,
   walletconnectConnector = defaultWalletconnectConnector,
+  bitgetWalletConnector = defaultBitgetWalletConnector,
   chainId = defaultChainId
 ) => {
   const { connector } = useWeb3React();
@@ -46,6 +48,21 @@ const useAuthorization = (
         .focus();
     }
   };
+
+  const loginBitget = () => {
+    const { bitgetTonWallet } = _window;
+    if (bitgetTonWallet) {
+      return bitgetWalletConnector
+        .activate(+chainId)
+        .then(() => localStorage.setItem('wallet', 'bitget'))
+    } else {
+      return _window
+        .open(
+          `https://web3.bitget.com/en/wallet-download?type=1`
+        )
+        .focus();
+    }
+  }
 
   const loginSafepal = () => {
     const { safepalProvider } = _window;
@@ -91,6 +108,7 @@ const useAuthorization = (
     loginMetamask,
     loginWalletConnect,
     loginSafepal,
+    loginBitget,
     logout,
   };
 };

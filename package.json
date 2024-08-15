@@ -1,6 +1,6 @@
 {
   "name": "airdao-components-and-tools",
-  "version": "2.0.7",
+  "version": "2.0.8",
   "private": false,
   "description": "Components, hooks and utils library for airdao web apps",
   "main": "./dist/index.js",
@@ -12,6 +12,8 @@
     "build": "webpack"
   },
   "dependencies": {
+    "@akkafinance/bitkeep-detect-provider": "^1.0.0",
+    "@akkafinance/web3-react-bitkeep": "^1.0.0",
     "@prismicio/client": "^6.7.1",
     "@prismicio/react": "^2.5.0",
     "@web3-react/metamask": "^8.2.4",
