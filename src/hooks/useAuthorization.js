@@ -51,7 +51,7 @@ const useAuthorization = (
 
   const loginBitget = () => {
     const { bitkeep } = _window;
-    if (bitgetWallet) {
+    if (bitkeep) {
       return bitgetWalletConnector
         .activate(+chainId)
         .then(() => localStorage.setItem('wallet', 'bitget'))
